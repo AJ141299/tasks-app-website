@@ -1,9 +1,6 @@
 <div class="grid grid-flow-col gap-4">
-    <collection></collection>
-    <collection></collection>
-    <collection></collection>
-    <collection></collection>
-    <div class="add-collection cursor-pointer">
+    <collection [collectionData]="collection" *ngFor="let collection of allCollections$ | async"></collection>
+    <div (click)="addCollection()" class="add-collection cursor-pointer">
         +
     </div>
 </div>

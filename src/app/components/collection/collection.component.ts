@@ -1,12 +1,5 @@
-import { Component } from '@angular/core';
-
-const getTasksStatus = (completedTasksCount: number, totalTasks: number): string => {
-  if (totalTasks == completedTasksCount) {
-    return `All ${totalTasks} done!`;
-  }
-
-  return `${completedTasksCount}/${totalTasks} done`;
-}
+import { Component, Input } from '@angular/core';
+import { Collection } from 'src/app/state/models/ui.models';
 
 @Component({
   selector: 'collection',
@@ -14,8 +7,17 @@ const getTasksStatus = (completedTasksCount: number, totalTasks: number): string
   styleUrls: ['./collection.component.scss']
 })
 export class CollectionComponent {
-  icon: string = "📄";
-  title: string = "Work";
-  tasksStatus: string = getTasksStatus(5, 10);
-  progressCircle: string = " ⃝";
+  @Input() collectionData: Collection;
+
+  getTasksStatus() {
+    return this.collectionData.completedTasksCount == 0 && this.collectionData.tasksCount == 0
+    ? 'No tasks'
+    : this.collectionData.tasksCount == this.collectionData.completedTasksCount
+      ? `All ${this.collectionData.tasksCount} done!`
+        : `${this.collectionData.completedTasksCount}/${this.collectionData.tasksCount} done`
+  }
+
+  createProgressCircle() {
+    return " ⃝";
+  }
 }

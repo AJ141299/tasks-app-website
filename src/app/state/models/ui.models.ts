@@ -1,7 +1,3 @@
-export interface AppState {
-    uiState: UiState
-}
-
 export interface UiState {
     collections: Collection[];
 }
@@ -11,8 +7,8 @@ export interface Collection {
     title: string;
     iconPath?: string;
     tasks?: Task[];
-    totalTasks?: number;
-    completedTasks?: number;
+    tasksCount?: number;
+    completedTasksCount?: number;
 }
 
 export interface Task {
