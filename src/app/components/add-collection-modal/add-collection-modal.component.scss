@@ -1,0 +1,11 @@
+.modal {
+    @apply flex flex-col px-6 py-6 z-50 space-y-8 rounded-lg bg-primary-500;
+}
+
+.button {
+    @apply text-sm font-semibold px-4 py-1 hover:text-text-primary rounded-collection transition-all ease-out;
+}
+
+.collection-input {
+    @apply flex flex-col space-y-1;
+}

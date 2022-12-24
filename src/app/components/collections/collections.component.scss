@@ -5,15 +5,16 @@
         rounded-collection
         text-xl 
         font-semibold 
-        border-collection-bg-hover
-        border-dotted 
+        border-primary-400
+        border-dotted
+        hover:border-solid
+        hover:border-primary-500
         border-2 
-        hover:border-none 
         flex 
         items-center 
         justify-center 
         text-[hsla(232,13%,35%,1.0)]
-        hover:bg-collection-bg
+        hover:bg-primary-500
         transition-all 
         ease-out;
 }
@@ -27,9 +28,9 @@
 }
 
 .toggle-active {
-    @apply bg-toggle-button-bg
+    @apply bg-primary-550
 }
 
 .toggle-inactive {
-    @apply border-2 border-toggle-button-bg hover:bg-toggle-button-bg
+    @apply border-2 border-primary-550 hover:bg-primary-550
 }

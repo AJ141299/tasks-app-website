@@ -1,4 +1,22 @@
-<div class="z-50 center-fixed w-[20%] h-[20%] rounded-collection bg-collection-bg">
-    test
-    <button (click)="discard()">Discard</button>
+<div class="modal center-fixed text-text-secondary">
+    <div class="flex flex-col">
+        <p class="text-lg font-semibold">New Collection</p>
+    </div>
+    <div class="space-y-16 justify-between">
+        <div class="flex items-end space-x-8 text-sm text-text-secondary">
+            <input placeholder="Name" class="bg-transparent border-b-2 border-primary-300" type="text" [formControl]="nameControl">
+            <div class="collection-input items-center">
+                <div class="text-xl">✌️</div>
+                <p>Icon</p>
+            </div>
+            <div class="collection-input items-center">
+                <div class="text-xl">💙</div>
+                <p>Accent</p>
+            </div>
+        </div>
+        <div class="flex space-x-2 justify-end">
+            <button class="hover:bg-red-800 button" (click)="discard()">Discard</button>
+            <button class="bg-primary-400 hover:bg-blue-800 button" (click)="save()">Save</button>
+        </div>
+    </div>
 </div>
