@@ -25,3 +25,12 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.disable-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
+.center-fixed {
+  @apply top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] fixed;
+}

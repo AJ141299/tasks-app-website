@@ -9,6 +9,8 @@ import { CollectionsComponent } from './components/collections/collections.compo
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './state/app.state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { AddCollectionModalComponent } from './components/add-collection-modal/add-collection-modal.component';
+import { BlockScreenComponent } from './components/block-screen/block-screen.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     TaskComponent,
     CollectionComponent,
     NavbarComponent,
-    CollectionsComponent
+    CollectionsComponent,
+    AddCollectionModalComponent,
+    BlockScreenComponent
   ],
   imports: [
     BrowserModule,
