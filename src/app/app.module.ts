@@ -5,12 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TaskComponent } from './task/task.component';
 import { CollectionComponent } from './collection/collection.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { CollectionsComponent } from './collections/collections.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskComponent,
-    CollectionComponent
+    CollectionComponent,
+    NavbarComponent,
+    CollectionsComponent
   ],
   imports: [
     BrowserModule,

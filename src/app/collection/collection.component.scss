@@ -1,0 +1,7 @@
+.collection {
+    @apply flex flex-col p-[22px] drop-shadow-md bg-[hsla(240,13%,15%,1.0)] justify-between hover:bg-[hsla(240,13%,13%,1.0)] transition-all ease-in;
+}
+
+.collection-icon {
+    @apply text-2xl absolute bottom-[12px] right-[15px];
+}
