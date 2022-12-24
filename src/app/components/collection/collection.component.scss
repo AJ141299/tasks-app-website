@@ -1,15 +1,15 @@
 .collection {
     @apply 
-        w-[var(--collection-width)] 
-        h-[var(--collection-height)] 
-        rounded-[var(--collection-roundness)] 
+        w-collection
+        h-collection
+        rounded-collection
         flex 
         flex-col 
         p-[22px] 
         drop-shadow-md 
-        bg-[var(--collection-bg)] 
+        bg-collection-bg
         justify-between 
-        hover:bg-[var(--collection-bg-hover)] 
+        hover:bg-collection-bg-hover
         transition-all 
         ease-out;
 }

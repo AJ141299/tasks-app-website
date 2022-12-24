@@ -1,19 +1,35 @@
 .add-collection {
     @apply 
-        w-[var(--collection-width)] 
-        h-[var(--collection-height)] 
-        rounded-[var(--collection-roundness)] 
+        w-collection 
+        h-collection
+        rounded-collection
         text-xl 
         font-semibold 
-        border-[hsla(232,13%,20%,1.0)] 
+        border-collection-bg-hover
         border-dotted 
         border-2 
         hover:border-none 
         flex 
         items-center 
         justify-center 
-        text-[hsla(232,13%,50%,1.0)] 
-        hover:bg-[var(--collection-bg)]
+        text-[hsla(232,13%,35%,1.0)]
+        hover:bg-collection-bg
         transition-all 
         ease-out;
+}
+
+.toggle-button {
+    @apply 
+        px-6 
+        py-2 
+        drop-shadow 
+        rounded-collection
+}
+
+.toggle-active {
+    @apply bg-collection-bg-hover
+}
+
+.toggle-inactive {
+    @apply border-2 border-collection-bg-hover
 }

@@ -23,6 +23,7 @@ export class CollectionsComponent {
       completedTasksCount: 5,
       tasksCount: 10,
       iconPath: "🗒",
+      accentColor: "hsla(340,94%,72%,1.0)",
     };
 
     this.store.dispatch(createCollection(collection));
