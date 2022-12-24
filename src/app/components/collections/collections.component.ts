@@ -1,16 +1,26 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { tap } from 'rxjs';
 import { addCollectionStatus, createCollection } from 'src/app/state/actions/ui.actions';
 import { AppState } from 'src/app/state/app.state';
 import { AddCollectionStatus, Collection } from 'src/app/state/models/ui.models';
 import { selectAllCollections } from 'src/app/state/selectors/ui.selectors';
-import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'collections',
   templateUrl: './collections.component.html',
-  styleUrls: ['./collections.component.scss']
+  styleUrls: ['./collections.component.scss'],
+  animations: [
+    trigger('fade', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(10%)' }),
+        animate('200ms', style({ opacity: 1, transform: 'translateY(0)' })),
+      ]),
+      transition(':leave', [
+        animate('200ms', style({ opacity: 0 }))
+      ])
+    ]),
+  ]
 })
 export class CollectionsComponent {
   allCollections$ = this.store.select(selectAllCollections);
@@ -18,26 +28,6 @@ export class CollectionsComponent {
   constructor(private store: Store<AppState>) { }
   
   addCollection() {
-    const collection: Collection = {
-      id: uuidv4(),
-      name: "School",
-      completedTasksCount: 5,
-      tasksCount: 10,
-      iconPath: "🗒",
-      accentColor: "hsla(340,94%,72%,1.0)",
-    };
-
-    this.store.dispatch(createCollection(collection));
-
-    // TODO: remove
-    this.allCollections$.pipe(
-      tap(collections => {
-        if (collections.length == 10 || collections.length == 12)  {
-          this.store.dispatch(addCollectionStatus({addCollectionStatus: AddCollectionStatus.Pending, blockScreen: true}));
-        } else {
-          this.store.dispatch(addCollectionStatus({addCollectionStatus: AddCollectionStatus.Complete, blockScreen: false}));
-        }
-      })
-    ).subscribe();
+    this.store.dispatch(addCollectionStatus({addCollectionStatus: AddCollectionStatus.Pending, blockScreen: true}));
   }
 }

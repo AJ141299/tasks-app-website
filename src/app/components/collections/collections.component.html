@@ -8,7 +8,8 @@
         <div class="grid grid-cols-3 gap-4 columns-3">
             <collection 
                 [collectionData]="collection" 
-                *ngFor="let collection of allCollections$ | async">
+                *ngFor="let collection of allCollections$ | async"
+                @fade>
             </collection>
             <div (click)="addCollection()" class="add-collection cursor-pointer">
                 +

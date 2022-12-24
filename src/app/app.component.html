@@ -5,4 +5,4 @@
     </div>
 </main>
 <add-collection-modal *ngIf="addCollectionStatus$ | async"></add-collection-modal>
-<block-screen *ngIf="blockScreen$ | async"></block-screen>
+<block-screen @blockScreenTrigger *ngIf="blockScreen$ | async"></block-screen>
