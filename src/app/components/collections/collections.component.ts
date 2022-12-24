@@ -19,7 +19,7 @@ export class CollectionsComponent {
   addCollection() {
     const collection: Collection = {
       id: uuidv4(),
-      title: "School",
+      name: "School",
       completedTasksCount: 5,
       tasksCount: 10,
       iconPath: "🗒",

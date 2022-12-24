@@ -4,7 +4,7 @@ export interface UiState {
 
 export interface Collection {
     id: string;
-    title: string;
+    name: string;
     iconPath?: string;
     tasks?: Task[];
     tasksCount?: number;

@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       colors: {
         "primary-bg": 'hsla(230,15%,10%,1.0)',
+        "toggle-button-bg": 'hsla(234,16%,14%,1.0)',
         "collection-bg": 'hsla(234,16%,15%,1.0)',
         "collection-bg-hover": 'hsla(240,13%,20%,1.0)',
         "nav": 'hsla(234,16%,15%,1.0)',
@@ -19,6 +20,7 @@ module.exports = {
       },
       height: {
         'collection': '160px',
+        'add-collection': '80px',
       },
       borderRadius: {
         'collection': '20px',

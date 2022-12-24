@@ -1,7 +1,7 @@
 .add-collection {
     @apply 
         w-collection 
-        h-collection
+        h-add-collection
         rounded-collection
         text-xl 
         font-semibold 
@@ -27,9 +27,9 @@
 }
 
 .toggle-active {
-    @apply bg-collection-bg-hover
+    @apply bg-toggle-button-bg
 }
 
 .toggle-inactive {
-    @apply border-2 border-collection-bg-hover
+    @apply border-2 border-toggle-button-bg hover:bg-toggle-button-bg
 }
