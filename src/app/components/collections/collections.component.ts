@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { createCollection } from 'src/app/state/actions/ui.actions';
 
 @Component({
   selector: 'collections',
