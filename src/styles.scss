@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --collection-width: 170px;
+  --collection-height: 160px;
+  --collection-roundness: 20px;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -24,8 +30,4 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
-}
-
-.collection-size {
-  @apply w-[170px] h-[160px] rounded-[20px];
 }
