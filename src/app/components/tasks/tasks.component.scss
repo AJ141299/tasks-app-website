@@ -1,0 +1,11 @@
+.add-task-icon {
+    @apply cursor-pointer bg-primary-300 px-[5px] py-[5px] rounded-xl text-primary-bg text-lg font-semibold;
+}
+
+.back-button {
+    @apply stroke-slate-50 cursor-pointer bg-primary-500 px-[10px] py-[10px] rounded-xl;
+}
+
+.add-task-field {
+    @apply px-3 py-2 border-2 rounded-2xl border-primary-500 flex space-x-3;
+}
