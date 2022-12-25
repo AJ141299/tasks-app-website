@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { createCollection, addCollectionStatus, deleteTask } from "../actions/ui.actions";
+import { createCollection, addCollectionStatus, deleteTask, revertTaskCompleteStatus } from "../actions/ui.actions";
 import { AddCollectionStatus, Collection, Task, UiState } from "../models/ui.models";
 
 export const initialState: UiState = {
@@ -21,6 +21,27 @@ const deleteTaskInCollection = (taskId: string, collection: Collection): Collect
     }
 }
 
+const revertCompleteStatus = (taskId: string, collection: Collection): Collection => {
+    return {
+        id: collection.id,
+        accentColor: collection.accentColor,
+        completedTasksCount: collection.completedTasksCount,
+        name: collection.name,
+        tasksCount: collection.tasksCount - 1,
+        iconPath: collection.iconPath,
+        isFavourite: collection.isFavourite,
+        tasks: collection.tasks.map((task: Task) => {
+            if (task.id == taskId) {
+                return {
+                    ...task,
+                    isComplete: !task.isComplete
+                }
+            }
+            return task;
+        })
+    }
+}
+
 export const uiReducer = createReducer(
     initialState,
     on(createCollection, (state, collection: Collection) => ({
@@ -37,6 +58,16 @@ export const uiReducer = createReducer(
         collections: [
             ...state.collections.filter((collection: Collection) => collection.id != collectionId),
             deleteTaskInCollection(
+                taskId,
+                state.collections.find((collection: Collection) => collection.id == collectionId)!
+            )
+        ]
+    })),
+    on(revertTaskCompleteStatus, (state, { collectionId, taskId }) => ({
+        ...state,
+        collections: [
+            ...state.collections.filter((collection: Collection) => collection.id != collectionId),
+            revertCompleteStatus(
                 taskId,
                 state.collections.find((collection: Collection) => collection.id == collectionId)!
             )

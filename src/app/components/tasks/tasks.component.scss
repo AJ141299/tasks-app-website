@@ -9,3 +9,7 @@
 .add-task-field {
     @apply px-2 py-2 border-2 rounded-2xl border-primary-500 flex space-x-3;
 }
+
+.tasks-section {
+    @apply flex flex-col space-y-3;
+}

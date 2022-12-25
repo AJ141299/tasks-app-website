@@ -16,14 +16,17 @@
         <input class="bg-transparent w-full" placeholder="Add a task" type="text">
     </div>
 
-    <div *ngIf="(incompleteTasks$ | async)?.length != 0" class="flex flex-col space-y-3">
+    <div *ngIf="(incompleteTasks$ | async)?.length != 0" class="tasks-section">
         <p class="text-text-secondary">Tasks - {{(incompleteTasks$ | async)?.length}}</p>
         <div>
             <task [task]="task" [collectionId]="collectionId" *ngFor="let task of incompleteTasks$ | async"></task>
         </div>
     </div>
 
-    <div *ngIf="(completeTasks$ | async)?.length != 0">
+    <div *ngIf="(completeTasks$ | async)?.length != 0" class="tasks-section">
         <p class="text-text-secondary">Complete - {{(completeTasks$ | async)?.length}}</p>
+        <div>
+            <task [task]="task" [collectionId]="collectionId" *ngFor="let task of completeTasks$ | async"></task>
+        </div>
     </div>
 </div>

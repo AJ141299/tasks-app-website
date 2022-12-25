@@ -26,7 +26,7 @@ export const deleteTask = createAction(
     props<{collectionId: string; taskId: string}>()
 );
 
-export const completeTask = createAction(
+export const revertTaskCompleteStatus = createAction(
     '[Tasks Page] Task complete',
-    props<{taskId: string}>()
+    props<{collectionId: string, taskId: string}>()
 );

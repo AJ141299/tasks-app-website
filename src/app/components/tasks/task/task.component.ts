@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { deleteTask } from 'src/app/state/actions/ui.actions';
+import { deleteTask, revertTaskCompleteStatus as revertTaskCompleteStatus } from 'src/app/state/actions/ui.actions';
 import { AppState } from 'src/app/state/app.state';
 import { Task } from 'src/app/state/models/ui.models';
 
@@ -19,6 +19,13 @@ export class TaskComponent {
 
   ngOnInit() {
     this.taskContent.setValue(this.task.content);
+  }
+
+  revertTaskCompleteStatus(): void {
+    this.store.dispatch(revertTaskCompleteStatus({
+      collectionId: this.collectionId,
+      taskId: this.task.id
+    }));
   }
 
   updateTask(): void {
