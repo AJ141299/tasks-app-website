@@ -1,17 +1,22 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { map, tap } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { createCollection, createTask } from 'src/app/state/actions/ui.actions';
 import { AppState } from 'src/app/state/app.state';
 import { Collection, Task } from 'src/app/state/models/ui.models';
 import { selectAllCollections } from 'src/app/state/selectors/ui.selectors';
 import { v4 as uuidv4 } from 'uuid';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
-const setAccentColors = (accentColor: string) => {
+const setAccentColors = (collection$: Observable<Collection | undefined>) => {
   const taskIcon: HTMLElement | null = document.querySelector('.add-task-icon');
-  taskIcon!.style.backgroundColor = accentColor;
+  collection$.pipe(
+    tap((collection: Collection | undefined) => {
+      taskIcon!.style.backgroundColor = collection!.accentColor;
+    })
+  ).subscribe();
 }
 
 @Component({
@@ -37,42 +42,37 @@ const setAccentColors = (accentColor: string) => {
   ]
 })
 export class TasksComponent {
-  collectionId: string = "123";
-  collection$ = this.store.select(selectAllCollections).pipe(
-    map((collections: Collection[]) => collections.find(
-      (collection: Collection) => collection.id == this.collectionId
-    ))
-  );
-  allTasks$ = this.collection$.pipe(
-    map((collection: Collection | undefined) => collection!.tasks)
-  );
-  incompleteTasks$ = this.allTasks$.pipe(
-    map((tasks: Task[]) => tasks.filter((task: Task) => !task.isComplete))
-  );
-  completeTasks$ = this.allTasks$.pipe(
-    map((tasks: Task[]) => tasks.filter((task: Task) => task.isComplete))
-  );
+  collectionId: string;
+  collection$: Observable<Collection | undefined>;
+  allTasks$: Observable<Task[]>;
+  incompleteTasks$: Observable<Task[]>;
+  completeTasks$: Observable<Task[]>;
   addTaskControl = new FormControl();
-  accentColor: string;
 
-  constructor(private store: Store<AppState>) { }
+  constructor(
+    private store: Store<AppState>,
+    private route: ActivatedRoute,
+    private router: Router,
+  ) { }
   
   ngOnInit() {
-    const collection: Collection = {
-      id: "123",
-      name: "School",
-      iconPath: "🗒",
-      accentColor: "hsla(340,94%,72%,1.0)",
-      tasks: []
-    };
+    this.collectionId = this.route.snapshot.paramMap.get('collectionId')!;
+    this.collection$ = this.store.select(selectAllCollections).pipe(
+      map((collections: Collection[]) => collections.find(
+        (collection: Collection) => collection.id == this.collectionId
+      ))
+    );
+    this.allTasks$ = this.collection$.pipe(
+      map((collection: Collection | undefined) => collection!.tasks)
+    );
+    this.incompleteTasks$ = this.allTasks$.pipe(
+      map((tasks: Task[]) => tasks.filter((task: Task) => !task.isComplete))
+    );
+    this.completeTasks$ = this.allTasks$.pipe(
+      map((tasks: Task[]) => tasks.filter((task: Task) => task.isComplete))
+    );
 
-    this.store.dispatch(createCollection(collection));
-    this.collection$.pipe(
-      tap((collection: Collection | undefined) => {
-        this.accentColor = collection!.accentColor;
-      })
-    ).subscribe();
-    setAccentColors(this.accentColor);
+    setAccentColors(this.collection$);
   }
 
   addTask() {
@@ -88,5 +88,9 @@ export class TasksComponent {
 
     this.store.dispatch(createTask({ collectionId: this.collectionId, task: task }));
     this.addTaskControl.reset();
+  }
+
+  navigateBack() {
+    this.router.navigate(['/collections']);
   }
 }

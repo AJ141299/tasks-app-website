@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Collection, Task } from 'src/app/state/models/ui.models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'collection',
@@ -8,6 +9,8 @@ import { Collection, Task } from 'src/app/state/models/ui.models';
 })
 export class CollectionComponent {
   @Input() collectionData: Collection;
+
+  constructor(private router: Router) {}
 
   getTasksStatus() {
     const completeTasksCount = this.collectionData.tasks
@@ -23,5 +26,9 @@ export class CollectionComponent {
 
   createProgressCircle() {
     return " ⃝";
+  }
+
+  open() {
+    this.router.navigate(['/tasks', this.collectionData.id]);
   }
 }

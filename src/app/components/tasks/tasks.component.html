@@ -1,11 +1,11 @@
 <div class="flex flex-col space-y-8">
     <div class="flex space-x-3 items-center">
-        <button class="back-button">
+        <button (click)="navigateBack()" class="back-button">
             <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" class="w-4 h-4">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
             </svg>
         </button>
-        <p class="text-2xl font-bold">School</p>
+        <p class="text-2xl font-bold">{{(collection$ | async)?.name}}</p>
     </div>
     <div class="add-task-field">
         <button (click)="addTask()" class="add-task-icon">
@@ -24,13 +24,13 @@
     <div *ngIf="(incompleteTasks$ | async)?.length != 0 && (incompleteTasks$ | async) != null" class="tasks-section">
         <p @fade class="ml-2 text-text-secondary">Tasks - {{(incompleteTasks$ | async)?.length}}</p>
         <div class="tasks-display">
-            <task [accentColor]="accentColor" @fadeDown [task]="task" [collectionId]="collectionId" *ngFor="let task of incompleteTasks$ | async"></task>
+            <task [accentColor]="(collection$ | async)!.accentColor" @fadeDown [task]="task" [collectionId]="collectionId" *ngFor="let task of incompleteTasks$ | async"></task>
         </div>
     </div>
     <div *ngIf="(completeTasks$ | async)?.length != 0 && (completeTasks$ | async) != null" class="tasks-section">
         <p @fade class="ml-2 text-text-secondary">Complete - {{(completeTasks$ | async)?.length}}</p>
         <div class="tasks-display">
-            <task [accentColor]="accentColor" @fadeDown [task]="task" [collectionId]="collectionId" *ngFor="let task of completeTasks$ | async"></task>
+            <task [accentColor]="(collection$ | async)!.accentColor" @fadeDown [task]="task" [collectionId]="collectionId" *ngFor="let task of completeTasks$ | async"></task>
         </div>
     </div>
 </div>
