@@ -16,9 +16,15 @@ const deleteTaskInCollection = (taskId: string, collection: Collection): Collect
 };
 
 const revertCompleteStatus = (taskId: string, collection: Collection): Collection => {
+    const isComplete = collection.tasks
+        .filter((task: Task) => {
+            return task.id == taskId;
+        })
+        .at(0)
+        ?.isComplete;
+
     return {
         ...collection,
-        tasksCount: collection.tasksCount - 1,
         tasks: collection.tasks.map((task: Task) => {
             if (task.id == taskId) {
                 return {

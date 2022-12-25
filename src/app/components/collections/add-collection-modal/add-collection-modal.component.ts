@@ -29,8 +29,6 @@ export class AddCollectionModalComponent {
       id: uuidv4(),
       name: this.nameControl.getRawValue(),
       tasks: [],
-      completedTasksCount: 0,
-      tasksCount: 0,
       iconPath: "🗒",
       accentColor: "hsla(340,94%,72%,1.0)",
     };

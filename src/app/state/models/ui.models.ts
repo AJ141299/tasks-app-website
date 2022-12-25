@@ -14,8 +14,6 @@ export interface Collection {
     name: string;
     iconPath?: string;
     tasks: Task[];
-    tasksCount: number;
-    completedTasksCount: number;
     isFavourite?: boolean;
     accentColor: string;
 }

@@ -5,3 +5,11 @@
 .delete-button {
     @apply stroke-primary-200 hover:stroke-primary-100 transition-all ease-out;
 }
+
+.complete-task-icon {
+    @apply px-[10px] border-2 border-primary-300 rounded-full cursor-pointer transition-all ease-out;
+}
+
+.complete {
+    @apply bg-primary-300;
+}

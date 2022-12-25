@@ -1,7 +1,9 @@
 <div class="task transition-all ease-in-out">
-    <button (click)="revertTaskCompleteStatus()" class="add-task-icon">
-        O
-    </button>
+    <div 
+        [style]="task.isComplete 
+            ? {backgroundColor: accentColor, borderColor: accentColor} 
+            : {borderColor: accentColor}" 
+        (click)="revertTaskCompleteStatus()" class="complete-task-icon"></div>
     <input
         [class]="task.isComplete ? 'line-through' : ''" 
         (input)="updateTask()" 

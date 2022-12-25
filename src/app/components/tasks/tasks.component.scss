@@ -1,9 +1,9 @@
 .add-task-icon {
-    @apply cursor-pointer bg-primary-300 px-[5px] py-[5px] rounded-xl text-primary-bg text-lg font-semibold;
+    @apply cursor-pointer px-[5px] py-[5px] rounded-xl bg-primary-300 text-primary-bg text-lg font-semibold;
 }
 
 .back-button {
-    @apply stroke-slate-50 cursor-pointer bg-primary-500 px-[10px] py-[10px] rounded-xl;
+    @apply stroke-slate-50 cursor-pointer bg-primary-500 hover:bg-primary-400 transition-all ease-out px-[10px] py-[10px] rounded-xl;
 }
 
 .add-task-field {

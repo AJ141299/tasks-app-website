@@ -24,13 +24,13 @@
     <div *ngIf="(incompleteTasks$ | async)?.length != 0 && (incompleteTasks$ | async) != null" class="tasks-section">
         <p @fade class="ml-2 text-text-secondary">Tasks - {{(incompleteTasks$ | async)?.length}}</p>
         <div class="tasks-display">
-            <task @fadeDown [task]="task" [collectionId]="collectionId" *ngFor="let task of incompleteTasks$ | async"></task>
+            <task [accentColor]="accentColor" @fadeDown [task]="task" [collectionId]="collectionId" *ngFor="let task of incompleteTasks$ | async"></task>
         </div>
     </div>
     <div *ngIf="(completeTasks$ | async)?.length != 0 && (completeTasks$ | async) != null" class="tasks-section">
         <p @fade class="ml-2 text-text-secondary">Complete - {{(completeTasks$ | async)?.length}}</p>
         <div class="tasks-display">
-            <task @fadeDown [task]="task" [collectionId]="collectionId" *ngFor="let task of completeTasks$ | async"></task>
+            <task [accentColor]="accentColor" @fadeDown [task]="task" [collectionId]="collectionId" *ngFor="let task of completeTasks$ | async"></task>
         </div>
     </div>
 </div>

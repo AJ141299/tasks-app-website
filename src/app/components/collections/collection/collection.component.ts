@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Collection } from 'src/app/state/models/ui.models';
+import { Collection, Task } from 'src/app/state/models/ui.models';
 
 @Component({
   selector: 'collection',
@@ -10,11 +10,15 @@ export class CollectionComponent {
   @Input() collectionData: Collection;
 
   getTasksStatus() {
-    return this.collectionData.completedTasksCount == 0 && this.collectionData.tasksCount == 0
+    const completeTasksCount = this.collectionData.tasks
+      .filter((task: Task) => task.isComplete)
+      .length;
+
+    return completeTasksCount == 0 && this.collectionData.tasks.length == 0
     ? 'No tasks'
-    : this.collectionData.tasksCount == this.collectionData.completedTasksCount
-      ? `All ${this.collectionData.tasksCount} done!`
-        : `${this.collectionData.completedTasksCount}/${this.collectionData.tasksCount} done`
+    : this.collectionData.tasks.length == completeTasksCount
+      ? `All ${this.collectionData.tasks.length} done!`
+        : `${completeTasksCount}/${this.collectionData.tasks.length} done`
   }
 
   createProgressCircle() {
