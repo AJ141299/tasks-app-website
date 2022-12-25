@@ -1,12 +1,25 @@
 import { createReducer, on } from "@ngrx/store";
-import { createCollection, addCollectionStatus } from "../actions/ui.actions";
-import { AddCollectionStatus, Collection, UiState } from "../models/ui.models";
+import { createCollection, addCollectionStatus, deleteTask } from "../actions/ui.actions";
+import { AddCollectionStatus, Collection, Task, UiState } from "../models/ui.models";
 
 export const initialState: UiState = {
     collections: [],
     addCollectionStatus: AddCollectionStatus.Complete,
     blockScreen: false,
 };
+
+const deleteTaskInCollection = (taskId: string, collection: Collection): Collection => {
+    return {
+        id: collection.id,
+        accentColor: collection.accentColor,
+        completedTasksCount: collection.completedTasksCount,
+        name: collection.name,
+        tasksCount: collection.tasksCount - 1,
+        iconPath: collection.iconPath,
+        isFavourite: collection.isFavourite,
+        tasks: collection.tasks.filter((task: Task) => task.id != taskId)
+    }
+}
 
 export const uiReducer = createReducer(
     initialState,
@@ -18,5 +31,15 @@ export const uiReducer = createReducer(
         ...state,
         addCollectionStatus: addCollectionStatus,
         blockScreen: blockScreen
+    })),
+    on(deleteTask, (state, { collectionId, taskId }) => ({
+        ...state,
+        collections: [
+            ...state.collections.filter((collection: Collection) => collection.id != collectionId),
+            deleteTaskInCollection(
+                taskId,
+                state.collections.find((collection: Collection) => collection.id == collectionId)!
+            )
+        ]
     })),
 );

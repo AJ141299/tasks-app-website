@@ -1,1 +1,6 @@
-<p>task works!</p>
+<div class="task">
+    <button class="add-task-icon">
+        O
+    </button>
+    <input (input)="updateTask()" [formControl]="taskContent" class="bg-transparent w-full" type="text">
+</div>

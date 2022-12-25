@@ -12,11 +12,21 @@ export const addCollectionStatus = createAction(
 );
 
 export const createTask = createAction(
-    '[Task Page] Create Task',
+    '[Tasks Page] Create Task',
     props<{collectionId: string; task: Task}>()
 );
 
+export const updateTask = createAction(
+    '[Tasks Page] Update Task',
+    props<{collectionId: string; task: Task}>()
+);
+
+export const deleteTask = createAction(
+    '[Tasks Page] Delete Task',
+    props<{collectionId: string; taskId: string}>()
+);
+
 export const completeTask = createAction(
-    '[Task Page] Task complete',
+    '[Tasks Page] Task complete',
     props<{taskId: string}>()
 );

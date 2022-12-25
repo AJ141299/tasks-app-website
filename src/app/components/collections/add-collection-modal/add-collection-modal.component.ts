@@ -28,6 +28,7 @@ export class AddCollectionModalComponent {
     const collection: Collection = {
       id: uuidv4(),
       name: this.nameControl.getRawValue(),
+      tasks: [],
       completedTasksCount: 0,
       tasksCount: 0,
       iconPath: "🗒",
