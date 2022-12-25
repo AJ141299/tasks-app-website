@@ -1,5 +1,5 @@
 .task {
-    @apply px-4 py-3 rounded-2xl bg-primary-500 flex space-x-3;
+    @apply px-4 py-3 rounded-2xl bg-primary-500 flex space-x-3 transition-all ease-in-out;
 }
 
 .delete-button {

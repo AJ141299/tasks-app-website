@@ -1,8 +1,8 @@
-<div class="task">
+<div class="task transition-all ease-in-out">
     <button (click)="revertTaskCompleteStatus()" class="add-task-icon">
         O
     </button>
-    <input 
+    <input
         [class]="task.isComplete ? 'line-through' : ''" 
         (input)="updateTask()" 
         [formControl]="taskContent" 

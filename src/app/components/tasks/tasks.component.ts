@@ -7,11 +7,33 @@ import { AppState } from 'src/app/state/app.state';
 import { Collection, Task } from 'src/app/state/models/ui.models';
 import { selectAllCollections } from 'src/app/state/selectors/ui.selectors';
 import { v4 as uuidv4 } from 'uuid';
+import { animate, sequence, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'tasks',
   templateUrl: './tasks.component.html',
-  styleUrls: ['./tasks.component.scss']
+  styleUrls: ['./tasks.component.scss'],
+  animations: [
+    trigger('fadeDown', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(-20%)' }),
+        animate('200ms', style({ opacity: 1, transform: 'translateY(0)' }))
+      ]),
+      transition(':leave', [
+        style({ opacity: 1, transform: 'translateY(0)' }),
+        animate('200ms', style({ opacity: 0, transform: 'translateY(-20%)' }))
+      ])
+    ]),
+    trigger('fade', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('200ms', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('200ms', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class TasksComponent {
   collectionId: string = "123";
@@ -34,12 +56,6 @@ export class TasksComponent {
   constructor(private store: Store<AppState>) { }
   
   ngOnInit() {
-    const task: Task = {
-      id: uuidv4(),
-      content: "meow meow",
-      isComplete: false
-    };
-
     const collection: Collection = {
       id: "123",
       name: "School",
@@ -47,18 +63,24 @@ export class TasksComponent {
       tasksCount: 0,
       iconPath: "🗒",
       accentColor: "hsla(340,94%,72%,1.0)",
-      tasks: [task]
+      tasks: []
     };
 
     this.store.dispatch(createCollection(collection));
   }
 
   addTask() {
+    const taskContent = this.addTaskControl.getRawValue();
+    if (taskContent == null || taskContent == '') {
+      return;
+    };
     const task: Task = {
       id: uuidv4(),
-      content: this.addTaskControl.getRawValue(),
+      content: taskContent,
       isComplete: false
     };
-    this.store.dispatch(createTask({collectionId: this.collectionId, task: task}));
+
+    this.store.dispatch(createTask({ collectionId: this.collectionId, task: task }));
+    this.addTaskControl.reset();
   }
 }

@@ -8,7 +8,7 @@ import { Task } from 'src/app/state/models/ui.models';
 @Component({
   selector: 'task',
   templateUrl: './task.component.html',
-  styleUrls: ['./task.component.scss']
+  styleUrls: ['./task.component.scss'],
 })
 export class TaskComponent {
   @Input() collectionId: string;
