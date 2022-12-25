@@ -1,3 +1,7 @@
 .task {
-    @apply px-3 py-3 rounded-2xl bg-primary-500 flex space-x-3;
+    @apply px-4 py-3 rounded-2xl bg-primary-500 flex space-x-3;
+}
+
+.delete-button {
+    @apply stroke-primary-200 hover:stroke-primary-100 transition-all ease-out;
 }

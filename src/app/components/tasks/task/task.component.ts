@@ -28,13 +28,17 @@ export class TaskComponent {
     }));
   }
 
+  deleteTask() {
+    this.store.dispatch(deleteTask(
+      { collectionId: this.collectionId, taskId: this.task.id }
+    ));
+  }
+
   updateTask(): void {
     const currentContent = this.taskContent.getRawValue();
 
     if (currentContent == '') {
-      this.store.dispatch(deleteTask(
-        { collectionId: this.collectionId, taskId: this.task.id }
-      ));
+      this.deleteTask();
       return;
     }
   }

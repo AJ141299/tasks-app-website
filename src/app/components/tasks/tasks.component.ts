@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { first, map, tap } from 'rxjs';
-import { createCollection } from 'src/app/state/actions/ui.actions';
+import { map } from 'rxjs';
+import { createCollection, createTask } from 'src/app/state/actions/ui.actions';
 import { AppState } from 'src/app/state/app.state';
 import { Collection, Task } from 'src/app/state/models/ui.models';
 import { selectAllCollections } from 'src/app/state/selectors/ui.selectors';
@@ -28,6 +29,7 @@ export class TasksComponent {
   completeTasks$ = this.allTasks$.pipe(
     map((tasks: Task[]) => tasks.filter((task: Task) => task.isComplete))
   );
+  addTaskControl = new FormControl();
 
   constructor(private store: Store<AppState>) { }
   
@@ -49,5 +51,14 @@ export class TasksComponent {
     };
 
     this.store.dispatch(createCollection(collection));
+  }
+
+  addTask() {
+    const task: Task = {
+      id: uuidv4(),
+      content: this.addTaskControl.getRawValue(),
+      isComplete: false
+    };
+    this.store.dispatch(createTask({collectionId: this.collectionId, task: task}));
   }
 }

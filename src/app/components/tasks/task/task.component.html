@@ -2,5 +2,16 @@
     <button (click)="revertTaskCompleteStatus()" class="add-task-icon">
         O
     </button>
-    <input (input)="updateTask()" [formControl]="taskContent" class="bg-transparent w-full" type="text">
+    <input 
+        [class]="task.isComplete ? 'line-through' : ''" 
+        (input)="updateTask()" 
+        [formControl]="taskContent" 
+        class="bg-transparent w-full" 
+        type="text"
+    >
+    <button class="delete-button" (click)="deleteTask()">
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="3" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+    </button>
 </div>

@@ -7,25 +7,26 @@
         </button>
         <p class="text-2xl font-bold">School</p>
     </div>
+
     <div class="add-task-field">
-        <button class="add-task-icon">
+        <button (click)="addTask()" class="add-task-icon">
             <svg fill="none" viewBox="0 0 24 24" stroke-width="2.7" stroke="currentColor" class="w-5 h-5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
               </svg>
         </button>
-        <input class="bg-transparent w-full" placeholder="Add a task" type="text">
+        <input [formControl]="addTaskControl" class="bg-transparent w-full" placeholder="Add a task" type="text">
     </div>
 
     <div *ngIf="(incompleteTasks$ | async)?.length != 0" class="tasks-section">
         <p class="text-text-secondary">Tasks - {{(incompleteTasks$ | async)?.length}}</p>
-        <div>
+        <div class="tasks-display">
             <task [task]="task" [collectionId]="collectionId" *ngFor="let task of incompleteTasks$ | async"></task>
         </div>
     </div>
 
     <div *ngIf="(completeTasks$ | async)?.length != 0" class="tasks-section">
         <p class="text-text-secondary">Complete - {{(completeTasks$ | async)?.length}}</p>
-        <div>
+        <div class="tasks-display">
             <task [task]="task" [collectionId]="collectionId" *ngFor="let task of completeTasks$ | async"></task>
         </div>
     </div>

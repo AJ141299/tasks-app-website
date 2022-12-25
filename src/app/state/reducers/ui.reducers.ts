@@ -1,8 +1,8 @@
 import { createReducer, on } from "@ngrx/store";
-import { createCollection, addCollectionStatus, deleteTask, revertTaskCompleteStatus } from "../actions/ui.actions";
+import { createCollection, addCollectionStatus, deleteTask, revertTaskCompleteStatus, createTask } from "../actions/ui.actions";
 import { AddCollectionStatus, Collection, Task, UiState } from "../models/ui.models";
 
-export const initialState: UiState = {
+const initialState: UiState = {
     collections: [],
     addCollectionStatus: AddCollectionStatus.Complete,
     blockScreen: false,
@@ -10,26 +10,15 @@ export const initialState: UiState = {
 
 const deleteTaskInCollection = (taskId: string, collection: Collection): Collection => {
     return {
-        id: collection.id,
-        accentColor: collection.accentColor,
-        completedTasksCount: collection.completedTasksCount,
-        name: collection.name,
-        tasksCount: collection.tasksCount - 1,
-        iconPath: collection.iconPath,
-        isFavourite: collection.isFavourite,
+        ...collection,
         tasks: collection.tasks.filter((task: Task) => task.id != taskId)
     }
-}
+};
 
 const revertCompleteStatus = (taskId: string, collection: Collection): Collection => {
     return {
-        id: collection.id,
-        accentColor: collection.accentColor,
-        completedTasksCount: collection.completedTasksCount,
-        name: collection.name,
+        ...collection,
         tasksCount: collection.tasksCount - 1,
-        iconPath: collection.iconPath,
-        isFavourite: collection.isFavourite,
         tasks: collection.tasks.map((task: Task) => {
             if (task.id == taskId) {
                 return {
@@ -40,7 +29,14 @@ const revertCompleteStatus = (taskId: string, collection: Collection): Collectio
             return task;
         })
     }
-}
+};
+
+const createTaskInCollection = (task: Task, collection: Collection): Collection => {
+    return {
+        ...collection,
+        tasks: [...collection.tasks, task]
+    };
+};
 
 export const uiReducer = createReducer(
     initialState,
@@ -69,6 +65,16 @@ export const uiReducer = createReducer(
             ...state.collections.filter((collection: Collection) => collection.id != collectionId),
             revertCompleteStatus(
                 taskId,
+                state.collections.find((collection: Collection) => collection.id == collectionId)!
+            )
+        ]
+    })),
+    on(createTask, (state, { collectionId, task }) => ({
+        ...state,
+        collections: [
+            ...state.collections.filter((collection: Collection) => collection.id != collectionId),
+            createTaskInCollection(
+                task,
                 state.collections.find((collection: Collection) => collection.id == collectionId)!
             )
         ]
