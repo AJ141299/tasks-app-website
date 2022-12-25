@@ -30,3 +30,8 @@ export const revertTaskCompleteStatus = createAction(
     '[Tasks Page] Task complete',
     props<{collectionId: string, taskId: string}>()
 );
+
+export const loadCollections = createAction(
+    '[Collections/Tasks Page] Get Collections from Local Storage',
+    props<{collections: Collection[]}>()
+);

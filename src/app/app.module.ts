@@ -7,13 +7,16 @@ import { CollectionComponent } from './components/collections/collection/collect
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CollectionsComponent } from './components/collections/collections.component';
 import { StoreModule } from '@ngrx/store';
-import { reducers } from './state/app.state';
+import { effects, reducers } from './state/app.state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AddCollectionModalComponent } from './components/collections/add-collection-modal/add-collection-modal.component';
 import { BlockScreenComponent } from './components/block-screen/block-screen.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TasksComponent } from './components/tasks/tasks.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { EffectsModule } from '@ngrx/effects';
+import { UiEffects } from './state/effects/ui.effects';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import { TasksComponent } from './components/tasks/tasks.component';
     CollectionsComponent,
     AddCollectionModalComponent,
     BlockScreenComponent,
-    TasksComponent
+    TasksComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,8 @@ import { TasksComponent } from './components/tasks/tasks.component';
     AppRoutingModule,
     ReactiveFormsModule,
     StoreModule.forRoot(reducers),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    EffectsModule.forRoot(effects)
   ],
   providers: [],
   bootstrap: [AppComponent]

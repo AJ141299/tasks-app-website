@@ -1,47 +1,23 @@
 import { createReducer, on } from "@ngrx/store";
-import { createCollection, addCollectionStatus, deleteTask, revertTaskCompleteStatus, createTask } from "../actions/ui.actions";
+import {
+    createCollection,
+    addCollectionStatus,
+    deleteTask,
+    revertTaskCompleteStatus,
+    createTask,
+    loadCollections
+} from "../actions/ui.actions";
 import { AddCollectionStatus, Collection, Task, UiState } from "../models/ui.models";
+import {
+    deleteTaskInCollection,
+    revertCompleteStatus,
+    createTaskInCollection
+} from "./reducer.helpers";
 
 const initialState: UiState = {
     collections: [],
     addCollectionStatus: AddCollectionStatus.Complete,
     blockScreen: false,
-};
-
-const deleteTaskInCollection = (taskId: string, collection: Collection): Collection => {
-    return {
-        ...collection,
-        tasks: collection.tasks.filter((task: Task) => task.id != taskId)
-    }
-};
-
-const revertCompleteStatus = (taskId: string, collection: Collection): Collection => {
-    const isComplete = collection.tasks
-        .filter((task: Task) => {
-            return task.id == taskId;
-        })
-        .at(0)
-        ?.isComplete;
-
-    return {
-        ...collection,
-        tasks: collection.tasks.map((task: Task) => {
-            if (task.id == taskId) {
-                return {
-                    ...task,
-                    isComplete: !task.isComplete
-                }
-            }
-            return task;
-        })
-    }
-};
-
-const createTaskInCollection = (task: Task, collection: Collection): Collection => {
-    return {
-        ...collection,
-        tasks: [...collection.tasks, task]
-    };
 };
 
 export const uiReducer = createReducer(
@@ -84,5 +60,9 @@ export const uiReducer = createReducer(
                 state.collections.find((collection: Collection) => collection.id == collectionId)!
             )
         ]
+    })),
+    on(loadCollections, (state, { collections }) => ({
+        ...state,
+        collections: collections
     })),
 );

@@ -29,6 +29,6 @@ export class CollectionComponent {
   }
 
   open() {
-    this.router.navigate(['/tasks', this.collectionData.id]);
+    this.router.navigate(['/collection', this.collectionData.id]);
   }
 }
