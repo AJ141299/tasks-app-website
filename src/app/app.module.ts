@@ -16,7 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TasksComponent } from './components/tasks/tasks.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { EffectsModule } from '@ngrx/effects';
-import { UiEffects } from './state/effects/ui.effects';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,8 @@ import { UiEffects } from './state/effects/ui.effects';
     ReactiveFormsModule,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-    EffectsModule.forRoot(effects)
+    EffectsModule.forRoot(effects),
+    NgCircleProgressModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,6 +7,21 @@
         <p class="text-xs text-text-tertiary">{{getTasksStatus()}}</p>
     </div>
     <div class="collection-icon">
-       {{createProgressCircle()}}
+       <circle-progress
+        [percent]="completePercent"
+        [radius]="8"
+        [space]="-3"
+        [showTitle]="false"
+        [showSubtitle]="false"
+        [showUnits]="false"
+        [outerStrokeLinecap]="'square'"
+        [showBackground]="false"
+        [showInnerStroke]="true"
+        [innerStrokeColor]="progressCircleInnerColor"
+        [innerStrokeWidth]="3"
+        [outerStrokeColor]="completePercent == 0 ? progressCircleInnerColor : collectionData.accentColor"
+        [outerStrokeWidth]="3"
+        [animation]="false">
+        </circle-progress>
     </div>
 </main>

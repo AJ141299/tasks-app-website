@@ -9,3 +9,7 @@
 .collection-input {
     @apply flex flex-col space-y-1;
 }
+
+.invalid-field {
+    @apply placeholder-red-400 border-b-red-400;
+}

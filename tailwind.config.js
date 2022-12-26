@@ -30,6 +30,9 @@ module.exports = {
       borderRadius: {
         'collection': '20px',
       },
+      animation: {
+        wiggle: 'pulse 1s ease-in-out 200ms',
+      },
     },
   },
   plugins: [],

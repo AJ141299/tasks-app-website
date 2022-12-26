@@ -6,7 +6,7 @@ export const createCollection = createAction(
     props<Collection>()
 );
 
-export const addCollectionStatus = createAction(
+export const createCollectionStatus = createAction(
     '[Collections Page] Adding Collection',
     props<{addCollectionStatus: AddCollectionStatus, blockScreen: boolean}>()
 );

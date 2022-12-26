@@ -1,7 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 import {
     createCollection,
-    addCollectionStatus,
+    createCollectionStatus,
     deleteTask,
     revertTaskCompleteStatus,
     createTask,
@@ -26,7 +26,7 @@ export const uiReducer = createReducer(
         ...state,
         collections: [...state.collections, collection]
     })),
-    on(addCollectionStatus, (state, {addCollectionStatus, blockScreen}) => ({
+    on(createCollectionStatus, (state, {addCollectionStatus, blockScreen}) => ({
         ...state,
         addCollectionStatus: addCollectionStatus,
         blockScreen: blockScreen

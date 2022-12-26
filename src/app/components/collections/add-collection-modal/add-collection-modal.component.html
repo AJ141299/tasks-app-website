@@ -4,7 +4,7 @@
     </div>
     <div class="space-y-16 justify-between">
         <div class="flex items-end space-x-8 text-sm text-text-secondary">
-            <input required placeholder="Name" class="bg-transparent border-b-2 border-primary-300 text-base" type="text" [formControl]="nameControl">
+            <input [class]="fieldValid ? '' : 'invalid-field animate-wiggle'" (keyup.enter)="save()" required placeholder="Name" class="bg-transparent border-b-2 border-primary-300 text-base" type="text" [formControl]="nameControl">
             <div class="collection-input items-center">
                 <div class="text-xl">✌️</div>
                 <p>Icon</p>
