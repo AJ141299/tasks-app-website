@@ -11,7 +11,7 @@ import {
 import {
     deleteTaskInCollection,
     revertCompleteStatus,
-    createTaskInCollection
+    createTaskInCollection,
 } from "./reducer.helpers";
 
 const initialState: UiState = {

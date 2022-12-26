@@ -8,17 +8,22 @@
             </button>
             <p class="truncate ... text-2xl font-bold">{{(collection$ | async)?.name}}</p>
         </div>
-        <div class="relative">
-            <div (clickOutside)="closeCollectionOptions()" (click)="toggleCollectionOptions()" class="cursor-pointer">
-                <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                </svg>
+        <div class="flex space-x-3">
+            <favourite-collection-button
+                [collection]="collection$ | async"
+            ></favourite-collection-button>
+            <div class="relative">
+                <div (clickOutside)="closeCollectionOptions()" (click)="toggleCollectionOptions()" class="cursor-pointer">
+                    <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </div>
+                <dropdown-modal 
+                    (optionSelected)="handleCollectionModalOption($event)"
+                    [options]="collectionModalOptions"
+                    *ngIf="showCollectionOptions">
+                </dropdown-modal>
             </div>
-            <dropdown-modal 
-                (optionSelected)="handleCollectionModalOption($event)"
-                [options]="collectionModalOptions"
-                *ngIf="showCollectionOptions">
-            </dropdown-modal>
         </div>
     </div>
     <div class="add-task-field">

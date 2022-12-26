@@ -21,6 +21,7 @@ import { ModalScreenComponent } from './components/modal-screen/modal-screen.com
 import { DropdownModalComponent } from './components/dropdown-modal/dropdown-modal.component';
 import { CollectionDetailsModalComponent } from './components/collections/collection-details-modal/collection-details-modal.component';
 import { NgClickOutsideDirective } from 'ng-click-outside2';
+import { FavouriteCollectionButtonComponent } from './components/collections/favourite-collection-button/favourite-collection-button.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { NgClickOutsideDirective } from 'ng-click-outside2';
     ModalScreenComponent,
     DropdownModalComponent,
     CollectionDetailsModalComponent,
+    FavouriteCollectionButtonComponent,
   ],
   imports: [
     BrowserModule,
