@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { map, Observable, tap } from 'rxjs';
-import { createTask } from 'src/app/state/actions/ui.actions';
+import { createTask, deleteCollection } from 'src/app/state/actions/ui.actions';
 import { AppState } from 'src/app/state/app.state';
 import { Collection, Task } from 'src/app/state/models/ui.models';
 import { selectAllCollections } from 'src/app/state/selectors/ui.selectors';
@@ -119,6 +119,8 @@ export class TasksComponent {
     this.toggleCollectionModal();
 
     if (option.value == "delete") {
+      this.store.dispatch(deleteCollection({ collectionId: this.collectionId }));
+      this.router.navigate(['/collections'])
       return;
     }
 

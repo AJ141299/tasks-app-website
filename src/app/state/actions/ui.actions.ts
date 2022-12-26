@@ -6,6 +6,11 @@ export const upsertCollection = createAction(
     props<Collection>()
 );
 
+export const deleteCollection = createAction(
+    '[Tasks Page] Delete Collection',
+    props<{collectionId: string}>()
+);
+
 export const createTask = createAction(
     '[Tasks Page] Create Task',
     props<{collectionId: string; task: Task}>()

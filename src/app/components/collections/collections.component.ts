@@ -22,10 +22,10 @@ import { selectAllCollections } from 'src/app/state/selectors/ui.selectors';
     trigger('fadeUp', [
       transition(':enter', [
         style({ opacity: 0, transform: 'translateY(15%)' }),
-        animate('300ms', style({ opacity: 1, transform: 'translateY(0)' })),
+        animate('200ms', style({ opacity: 1, transform: 'translateY(0)' })),
       ]),
       transition(':leave', [
-        animate('300ms', style({ opacity: 0 }))
+        animate('200ms', style({ opacity: 0 }))
       ])
     ]),
   ]

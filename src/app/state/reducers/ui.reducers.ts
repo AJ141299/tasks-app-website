@@ -6,6 +6,7 @@ import {
     revertTaskCompleteStatus,
     createTask,
     loadCollections,
+    deleteCollection,
 } from "../actions/ui.actions";
 import {
     deleteTaskInCollection,
@@ -25,6 +26,11 @@ export const uiReducer = createReducer(
             existingCollection.id != collection.id),
             collection
         ]
+    })),
+    on(deleteCollection, (state, { collectionId }) => ({
+        ...state,
+        collections: state.collections
+            .filter((collection: Collection) => collection.id != collectionId)
     })),
     on(deleteTask, (state, { collectionId, taskId }) => ({
         ...state,
