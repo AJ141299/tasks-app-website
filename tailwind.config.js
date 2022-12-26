@@ -19,6 +19,7 @@ module.exports = {
         "primary-300": 'hsla(240,13%,30%,1.0)',
         "primary-200": 'hsla(240,13%,50%,1.0)',
         "primary-100": 'hsla(240,13%,70%,1.0)',
+        "primary-50": 'hsla(240,13%,80%,1.0)',
       },
       width: {
         'collection': '170px',

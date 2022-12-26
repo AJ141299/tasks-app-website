@@ -3,7 +3,7 @@
 }
 
 .back-button {
-    @apply stroke-slate-50 cursor-pointer bg-primary-500 hover:bg-primary-400 transition-all ease-out px-[10px] py-[10px] rounded-xl;
+    @apply stroke-primary-50 cursor-pointer bg-primary-500 hover:bg-primary-400 transition-all ease-out px-[10px] py-[10px] rounded-xl;
 }
 
 .add-task-field {
