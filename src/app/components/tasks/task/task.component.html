@@ -17,7 +17,7 @@
         [class]="task.isComplete ? 'line-through' : ''" 
         (input)="updateTask()" 
         [formControl]="taskContent" 
-        class="bg-transparent w-full" 
+        class="truncate ... bg-transparent w-full" 
         type="text"
     >
     <button class="delete-button" (click)="deleteTask()">
