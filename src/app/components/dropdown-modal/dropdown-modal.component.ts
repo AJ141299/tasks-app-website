@@ -23,7 +23,6 @@ export interface ModalOption {
   ]
 })
 export class DropdownModalComponent {
-  @Input() toggleModal: boolean = false;
   @Input() options: ModalOption[] = [];
   @Output() optionSelected = new EventEmitter<ModalOption>();
 

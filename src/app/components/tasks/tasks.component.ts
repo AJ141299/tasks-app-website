@@ -49,7 +49,7 @@ export class TasksComponent {
   incompleteTasks$: Observable<Task[]>;
   completeTasks$: Observable<Task[]>;
   addTaskControl: FormControl = new FormControl();
-  showCollectionModal: boolean = false;
+  showCollectionOptions: boolean = false;
   collectionModalOptions: ModalOption[] = [
     {
       name: "Edit",
@@ -107,8 +107,14 @@ export class TasksComponent {
     this.router.navigate(['/collections']);
   }
 
-  toggleCollectionModal() {
-    this.showCollectionModal = !this.showCollectionModal;
+  toggleCollectionOptions() {
+    this.showCollectionOptions = !this.showCollectionOptions;
+  }
+
+  closeCollectionOptions() {
+    if (this.showCollectionOptions) {
+      this.showCollectionOptions = false;
+    }
   }
 
   toggleEditCollection() {
@@ -116,7 +122,7 @@ export class TasksComponent {
   }
 
   handleCollectionModalOption(option: ModalOption) {
-    this.toggleCollectionModal();
+    this.toggleCollectionOptions();
 
     if (option.value == "delete") {
       this.store.dispatch(deleteCollection({ collectionId: this.collectionId }));

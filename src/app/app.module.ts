@@ -20,6 +20,7 @@ import { AccentColorPickerComponent } from './components/collections/accent-colo
 import { ModalScreenComponent } from './components/modal-screen/modal-screen.component';
 import { DropdownModalComponent } from './components/dropdown-modal/dropdown-modal.component';
 import { CollectionDetailsModalComponent } from './components/collections/collection-details-modal/collection-details-modal.component';
+import { NgClickOutsideDirective } from 'ng-click-outside2';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { CollectionDetailsModalComponent } from './components/collections/collec
     BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    NgClickOutsideDirective,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot(effects),

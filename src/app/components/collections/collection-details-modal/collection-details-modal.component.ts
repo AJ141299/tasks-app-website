@@ -49,6 +49,7 @@ export class CollectionDetailsModalComponent {
   constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
+    // load existing values
     if (this.collectionExists) {
       this.nameControl.setValue(this.collection!.name);
       this.selectedAccentColor = this.collection!.accentColor;
@@ -63,9 +64,7 @@ export class CollectionDetailsModalComponent {
     }
 
     const collection: Collection = {
-      id: this.collection!.id,
-      isFavourite: this.collection!.isFavourite,
-      tasks: this.collection!.tasks,
+      ...this.collection!,
       accentColor: this.selectedAccentColor,
       iconPath: this.selectedIcon,
       name: this.nameControl.getRawValue(),
