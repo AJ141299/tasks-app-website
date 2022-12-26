@@ -1,12 +1,12 @@
 import { createReducer, on } from "@ngrx/store";
+import { Collection, UiState } from "../models/ui.models";
 import {
-    createCollection,
+    upsertCollection,
     deleteTask,
     revertTaskCompleteStatus,
     createTask,
     loadCollections,
 } from "../actions/ui.actions";
-import { Collection, UiState } from "../models/ui.models";
 import {
     deleteTaskInCollection,
     revertCompleteStatus,
@@ -19,9 +19,12 @@ const initialState: UiState = {
 
 export const uiReducer = createReducer(
     initialState,
-    on(createCollection, (state, collection: Collection) => ({
+    on(upsertCollection, (state, collection: Collection) => ({
         ...state,
-        collections: [...state.collections, collection]
+        collections: [...state.collections.filter((existingCollection: Collection) => 
+            existingCollection.id != collection.id),
+            collection
+        ]
     })),
     on(deleteTask, (state, { collectionId, taskId }) => ({
         ...state,

@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { map, Observable, tap } from 'rxjs';
-import { createCollection, createTask } from 'src/app/state/actions/ui.actions';
+import { createTask } from 'src/app/state/actions/ui.actions';
 import { AppState } from 'src/app/state/app.state';
 import { Collection, Task } from 'src/app/state/models/ui.models';
 import { selectAllCollections } from 'src/app/state/selectors/ui.selectors';
 import { v4 as uuidv4 } from 'uuid';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ModalOption } from '../dropdown-modal/dropdown-modal.component';
 
 const setAccentColors = (collection$: Observable<Collection | undefined>) => {
   const taskIcon: HTMLElement | null = document.querySelector('.add-task-icon');
@@ -47,7 +48,18 @@ export class TasksComponent {
   allTasks$: Observable<Task[]>;
   incompleteTasks$: Observable<Task[]>;
   completeTasks$: Observable<Task[]>;
-  addTaskControl = new FormControl();
+  addTaskControl: FormControl = new FormControl();
+  showCollectionModal: boolean = false;
+  collectionModalOptions: ModalOption[] = [
+    {
+      name: "Edit",
+      value: "edit"
+    },
+    {
+      name: "Delete",
+      value: "delete"
+    }
+  ];
 
   constructor(
     private store: Store<AppState>,
@@ -92,5 +104,26 @@ export class TasksComponent {
 
   navigateBack() {
     this.router.navigate(['/collections']);
+  }
+
+  toggleCollectionModal() {
+    this.showCollectionModal = !this.showCollectionModal;
+  }
+
+  deleteCollection(collectionId: string) {
+    // this.store.dispatch()
+    console.log("Delete collection!")
+  }
+
+  editCollection() {
+
+  }
+
+  handleCollectionModalOption(option: ModalOption) {
+    if (option.value == "delete") {
+      this.deleteCollection(this.collectionId)
+      return;
+    }
+    this.editCollection();
   }
 }

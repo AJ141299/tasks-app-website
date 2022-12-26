@@ -9,7 +9,6 @@ import { CollectionsComponent } from './components/collections/collections.compo
 import { StoreModule } from '@ngrx/store';
 import { effects, reducers } from './state/app.state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { AddCollectionModalComponent } from './components/collections/add-collection-modal/add-collection-modal.component';
 import { BlockScreenComponent } from './components/block-screen/block-screen.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -19,6 +18,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { AccentColorPickerComponent } from './components/collections/accent-color-picker/accent-color-picker.component';
 import { ModalScreenComponent } from './components/modal-screen/modal-screen.component';
+import { DropdownModalComponent } from './components/dropdown-modal/dropdown-modal.component';
+import { CollectionDetailsModalComponent } from './components/collections/collection-details-modal/collection-details-modal.component';
 
 @NgModule({
   declarations: [
@@ -27,12 +28,13 @@ import { ModalScreenComponent } from './components/modal-screen/modal-screen.com
     CollectionComponent,
     NavbarComponent,
     CollectionsComponent,
-    AddCollectionModalComponent,
     BlockScreenComponent,
     TasksComponent,
     PageNotFoundComponent,
     AccentColorPickerComponent,
-    ModalScreenComponent
+    ModalScreenComponent,
+    DropdownModalComponent,
+    CollectionDetailsModalComponent,
   ],
   imports: [
     BrowserModule,

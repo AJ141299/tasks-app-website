@@ -1,0 +1,5 @@
+<div *ngIf="toggleModal" @fade class="modal">
+    <div (click)="selected(option)" *ngFor="let option of options" class="option disable-text-selection">
+        {{option.name}}
+    </div>
+</div>

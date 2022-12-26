@@ -17,5 +17,9 @@
         </div>
     </div>
 </div>
-<add-collection-modal (complete)="toggleAddCollection()" *ngIf="addingCollection"></add-collection-modal>
+<collection-details-modal
+    *ngIf="addingCollection"
+    (close)="toggleAddCollection()"
+    [collectionExists]="false"
+></collection-details-modal>
 

@@ -34,3 +34,12 @@ input[type=number] {
 .center-fixed {
   @apply top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] fixed;
 }
+
+.disable-text-selection {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror */
+  -moz-user-select: none; /* Old version of Firefox */
+  -ms-user-select: none; /* Internet Explorer or Edge */
+  user-select: none; /* All modern browsers */
+}

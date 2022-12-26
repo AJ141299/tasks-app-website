@@ -1,8 +1,8 @@
 import { createAction, props } from "@ngrx/store";
 import { Task, Collection } from "../models/ui.models";
 
-export const createCollection = createAction(
-    '[Collections Page] Create Collection',
+export const upsertCollection = createAction(
+    '[Collections/Tasks Page] Upsert Collection',
     props<Collection>()
 );
 
