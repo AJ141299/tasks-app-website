@@ -18,6 +18,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { EffectsModule } from '@ngrx/effects';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { AccentColorPickerComponent } from './components/collections/accent-color-picker/accent-color-picker.component';
+import { ModalScreenComponent } from './components/modal-screen/modal-screen.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AccentColorPickerComponent } from './components/collections/accent-colo
     BlockScreenComponent,
     TasksComponent,
     PageNotFoundComponent,
-    AccentColorPickerComponent
+    AccentColorPickerComponent,
+    ModalScreenComponent
   ],
   imports: [
     BrowserModule,

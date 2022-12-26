@@ -1,14 +1,9 @@
 import { createAction, props } from "@ngrx/store";
-import { Task, Collection, AddCollectionStatus } from "../models/ui.models";
+import { Task, Collection } from "../models/ui.models";
 
 export const createCollection = createAction(
     '[Collections Page] Create Collection',
     props<Collection>()
-);
-
-export const createCollectionStatus = createAction(
-    '[Collections Page] Adding Collection',
-    props<{addCollectionStatus: AddCollectionStatus, blockScreen: boolean}>()
 );
 
 export const createTask = createAction(

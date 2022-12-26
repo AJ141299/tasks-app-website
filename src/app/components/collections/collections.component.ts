@@ -2,9 +2,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { loadCollectionsFromLocalStorage } from 'src/app/helpers/helpers';
-import { createCollectionStatus } from 'src/app/state/actions/ui.actions';
 import { AppState } from 'src/app/state/app.state';
-import { AddCollectionStatus, Collection } from 'src/app/state/models/ui.models';
 import { selectAllCollections } from 'src/app/state/selectors/ui.selectors';
 
 @Component({
@@ -25,6 +23,7 @@ import { selectAllCollections } from 'src/app/state/selectors/ui.selectors';
 })
 export class CollectionsComponent {
   allCollections$ = this.store.select(selectAllCollections);
+  addingCollection: boolean = false;
 
   constructor(private store: Store<AppState>) { }
 
@@ -32,7 +31,7 @@ export class CollectionsComponent {
     loadCollectionsFromLocalStorage(this.store);
   }
   
-  addCollection() {
-    this.store.dispatch(createCollectionStatus({addCollectionStatus: AddCollectionStatus.Pending, blockScreen: true}));
+  toggleAddCollection() {
+    this.addingCollection = !this.addingCollection;
   }
 }

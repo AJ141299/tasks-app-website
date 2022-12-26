@@ -1,10 +1,24 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-
+import { Component, EventEmitter, Output } from '@angular/core';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'accent-color-picker',
   templateUrl: './accent-color-picker.component.html',
-  styleUrls: ['./accent-color-picker.component.scss']
+  styleUrls: ['./accent-color-picker.component.scss'],
+  animations: [
+    trigger('fade', [
+      transition('* => open', [
+        style({ opacity: 0 }),
+        animate(3000, style({ opacity: 1 }))
+      ])
+    ]),
+    trigger('fadeUp', [
+      transition('* => open', [
+        style({ opacity: 0, transform: 'translateY(3%)' }),
+        animate(200, style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ]),
+  ]
 })
 export class AccentColorPickerComponent {
 	@Output() closeAccentEvent = new EventEmitter<string>();
