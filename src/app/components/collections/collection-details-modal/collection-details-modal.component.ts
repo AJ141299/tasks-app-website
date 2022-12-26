@@ -37,7 +37,7 @@ export class CollectionDetailsModalComponent {
   selectedIcon: string | undefined = "🚧";
   selectedAccentColor: string = "hsla(340,94%,72%,1.0)";
   @Input() collectionExists: boolean = false;
-  @Input() collection: Collection = {
+  @Input() collection: Collection | undefined | null = {
     id: uuidv4(),
     name: this.nameControl.getRawValue(),
     tasks: [],
@@ -50,9 +50,9 @@ export class CollectionDetailsModalComponent {
 
   ngOnInit() {
     if (this.collectionExists) {
-      this.nameControl.setValue(this.collection.name);
-      this.selectedAccentColor = this.collection.accentColor;
-      this.selectedIcon = this.collection.iconPath;
+      this.nameControl.setValue(this.collection!.name);
+      this.selectedAccentColor = this.collection!.accentColor;
+      this.selectedIcon = this.collection!.iconPath;
     }
   }
 
@@ -62,11 +62,16 @@ export class CollectionDetailsModalComponent {
       return;
     }
 
-    this.collection.accentColor = this.selectedAccentColor;
-    this.collection.iconPath = this.selectedIcon;
-    this.collection.name = this.nameControl.getRawValue();
+    const collection: Collection = {
+      id: this.collection!.id,
+      isFavourite: this.collection!.isFavourite,
+      tasks: this.collection!.tasks,
+      accentColor: this.selectedAccentColor,
+      iconPath: this.selectedIcon,
+      name: this.nameControl.getRawValue(),
+    }
 
-    this.store.dispatch(upsertCollection(this.collection));
+    this.store.dispatch(upsertCollection(collection));
     this.close()
   }
 

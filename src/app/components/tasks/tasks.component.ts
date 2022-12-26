@@ -60,6 +60,7 @@ export class TasksComponent {
       value: "delete"
     }
   ];
+  editingCollection: boolean = false;
 
   constructor(
     private store: Store<AppState>,
@@ -110,20 +111,17 @@ export class TasksComponent {
     this.showCollectionModal = !this.showCollectionModal;
   }
 
-  deleteCollection(collectionId: string) {
-    // this.store.dispatch()
-    console.log("Delete collection!")
-  }
-
-  editCollection() {
-
+  toggleEditCollection() {
+    this.editingCollection = !this.editingCollection;
   }
 
   handleCollectionModalOption(option: ModalOption) {
+    this.toggleCollectionModal();
+
     if (option.value == "delete") {
-      this.deleteCollection(this.collectionId)
       return;
     }
-    this.editCollection();
+
+    this.toggleEditCollection();
   }
 }

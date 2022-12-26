@@ -40,7 +40,7 @@ export class CollectionsComponent {
     loadCollectionsFromLocalStorage(this.store);
   }
   
-  toggleAddCollection() {
+  toggleCollectionDetailsModal() {
     this.addingCollection = !this.addingCollection;
   }
 }

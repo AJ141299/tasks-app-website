@@ -11,7 +11,7 @@
                 *ngFor="let collection of allCollections$ | async"
                 @fadeUp>
             </collection>
-            <div (click)="toggleAddCollection()" class="add-collection cursor-pointer">
+            <div (click)="toggleCollectionDetailsModal()" class="add-collection cursor-pointer">
                 +
             </div>
         </div>
@@ -19,7 +19,7 @@
 </div>
 <collection-details-modal
     *ngIf="addingCollection"
-    (close)="toggleAddCollection()"
+    (close)="toggleCollectionDetailsModal()"
     [collectionExists]="false"
 ></collection-details-modal>
 

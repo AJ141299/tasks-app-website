@@ -48,3 +48,9 @@
         </div>
     </div>
 </div>
+<collection-details-modal
+    *ngIf="editingCollection"
+    (close)="toggleEditCollection()"
+    [collectionExists]="true"
+    [collection]="collection$ | async"
+></collection-details-modal>
