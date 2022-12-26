@@ -12,11 +12,20 @@ import { selectAllCollections } from 'src/app/state/selectors/ui.selectors';
   animations: [
     trigger('fade', [
       transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(10%)' }),
-        animate('200ms', style({ opacity: 1, transform: 'translateY(0)' })),
+        style({ opacity: 0 }),
+        animate('200ms', style({ opacity: 1})),
       ]),
       transition(':leave', [
         animate('200ms', style({ opacity: 0 }))
+      ])
+    ]),
+    trigger('fadeUp', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(15%)' }),
+        animate('300ms', style({ opacity: 1, transform: 'translateY(0)' })),
+      ]),
+      transition(':leave', [
+        animate('300ms', style({ opacity: 0 }))
       ])
     ]),
   ]
