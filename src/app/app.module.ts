@@ -17,7 +17,7 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { EffectsModule } from '@ngrx/effects';
 import { NgCircleProgressModule } from 'ng-circle-progress';
-import { AccentColorPickerComponent } from './components/accent-color-picker/accent-color-picker.component';
+import { AccentColorPickerComponent } from './components/collections/accent-color-picker/accent-color-picker.component';
 
 @NgModule({
   declarations: [

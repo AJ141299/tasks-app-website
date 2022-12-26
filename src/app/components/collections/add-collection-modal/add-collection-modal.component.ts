@@ -5,6 +5,7 @@ import { AddCollectionStatus, Collection } from 'src/app/state/models/ui.models'
 import { createCollectionStatus, createCollection } from 'src/app/state/actions/ui.actions';
 import { v4 as uuidv4 } from 'uuid';
 import { FormControl } from '@angular/forms';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 const isFieldValid = (value: string | null | undefined) => {
   return value != null && value != '' && value != undefined;
@@ -13,13 +14,32 @@ const isFieldValid = (value: string | null | undefined) => {
 @Component({
   selector: 'add-collection-modal',
   templateUrl: './add-collection-modal.component.html',
-  styleUrls: ['./add-collection-modal.component.scss']
+  styleUrls: ['./add-collection-modal.component.scss'],
+  animations: [
+    trigger('modalTransition', [
+      // transition('baseModal => innerModal', [
+      //   animate(100, style({ opacity: 0 }))
+      // ]),
+      // transition('innerModal => baseModal', [
+      //   animate(100, style({ opacity: 0 }))
+      // ]),
+      transition('* => baseModal', [
+        style({ opacity: 0 }),
+        animate(200, style({ opacity: 1 }))
+      ]),
+      transition('baseModal <=> innerModal', [
+        style({ opacity: 0 }),
+        animate(200, style({ opacity: 1 }))
+      ])
+    ]),
+  ]
 })
 export class AddCollectionModalComponent {
   nameControl = new FormControl();
   fieldValid: boolean = true;
   showAccentPicker: boolean = false;
   selectedAccentColor: string = "hsla(340,94%,72%,1.0)";
+  modalState: string = 'baseModal';
 
   constructor(private store: Store<AppState>) {}
 
@@ -56,6 +76,7 @@ export class AddCollectionModalComponent {
   }
 
   toggleAccentPicker() {
+    this.modalState = this.modalState == 'baseModal' ? 'innerModal' : 'baseModal';
     this.showAccentPicker = !this.showAccentPicker;
   }
 

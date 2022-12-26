@@ -1,5 +1,5 @@
-<div class="modal center-fixed text-text-secondary overflow-auto">
-    <div *ngIf="!showAccentPicker" class="flex flex-col h-[221px] justify-between">
+<div @modalTransition class="modal center-fixed text-text-secondary overflow-auto">
+    <div [@modalTransition]="modalState" *ngIf="!showAccentPicker" class="flex flex-col h-[221px] justify-between">
         <p class="text-lg font-semibold">New Collection</p>
         <div class="px-1 justify-between">
             <div class="flex justify-between space-x-8 text-sm text-text-secondary">
@@ -23,5 +23,5 @@
             <button class="bg-primary-400 hover:bg-blue-800 button" (click)="save()">Save</button>
         </div>
     </div>
-    <accent-color-picker *ngIf="showAccentPicker" (closeAccentEvent)="assignAccentColor($event)"></accent-color-picker>
+    <accent-color-picker [@modalTransition]="modalState" *ngIf="showAccentPicker" (closeAccentEvent)="assignAccentColor($event)"></accent-color-picker>
 </div>
