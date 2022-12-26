@@ -18,6 +18,8 @@ const isFieldValid = (value: string | null | undefined) => {
 export class AddCollectionModalComponent {
   nameControl = new FormControl();
   fieldValid: boolean = true;
+  showAccentPicker: boolean = false;
+  selectedAccentColor: string = "hsla(340,94%,72%,1.0)";
 
   constructor(private store: Store<AppState>) {}
 
@@ -42,7 +44,7 @@ export class AddCollectionModalComponent {
       name: name,
       tasks: [],
       iconPath: "🗒",
-      accentColor: "hsla(340,94%,72%,1.0)",
+      accentColor: this.selectedAccentColor,
     };
 
     this.store.dispatch(createCollection(collection));
@@ -51,5 +53,14 @@ export class AddCollectionModalComponent {
 
   discard() {
     this.store.dispatch(createCollectionStatus({ addCollectionStatus: AddCollectionStatus.Complete, blockScreen: false }));
+  }
+
+  toggleAccentPicker() {
+    this.showAccentPicker = !this.showAccentPicker;
+  }
+
+  assignAccentColor(color: string) {
+    this.selectedAccentColor = color;
+    this.toggleAccentPicker();
   }
 }

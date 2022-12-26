@@ -17,6 +17,7 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { EffectsModule } from '@ngrx/effects';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { AccentColorPickerComponent } from './components/accent-color-picker/accent-color-picker.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     AddCollectionModalComponent,
     BlockScreenComponent,
     TasksComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AccentColorPickerComponent
   ],
   imports: [
     BrowserModule,

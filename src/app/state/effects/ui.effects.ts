@@ -26,7 +26,6 @@ export class UiEffects {
             ),
             withLatestFrom(this.collections$),
             tap(([_, collections]) => {
-                console.log(collections);
                 localStorage.setItem('collections', JSON.stringify(collections));
             })
         ),

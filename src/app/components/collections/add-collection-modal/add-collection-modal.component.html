@@ -1,17 +1,21 @@
-<div class="modal center-fixed text-text-secondary">
-    <div class="flex flex-col">
+<div class="modal center-fixed text-text-secondary overflow-auto">
+    <div *ngIf="!showAccentPicker" class="flex flex-col h-[221px] justify-between">
         <p class="text-lg font-semibold">New Collection</p>
-    </div>
-    <div class="space-y-16 justify-between">
-        <div class="flex items-end space-x-8 text-sm text-text-secondary">
-            <input [class]="fieldValid ? '' : 'invalid-field animate-wiggle'" (keyup.enter)="save()" required placeholder="Name" class="bg-transparent border-b-2 border-primary-300 text-base" type="text" [formControl]="nameControl">
-            <div class="collection-input items-center">
-                <div class="text-xl">✌️</div>
-                <p>Icon</p>
-            </div>
-            <div class="collection-input items-center">
-                <div class="text-xl">💙</div>
-                <p>Accent</p>
+        <div class="px-1 justify-between">
+            <div class="flex justify-between space-x-8 text-sm text-text-secondary">
+                <input [class]="fieldValid ? '' : 'invalid-field animate-wiggle'" (keyup.enter)="save()" required placeholder="Name" class="bg-transparent border-b-2 border-primary-300 text-base" type="text" [formControl]="nameControl">
+                <div class="collection-input items-center">
+                    <div class="text-xl">✌️</div>
+                    <p>Icon</p>
+                </div>
+                <div class="collection-input items-center">
+                    <div 
+                    (click)="toggleAccentPicker()" 
+                    [style]="{ backgroundColor: selectedAccentColor }"
+                    class="accent-icon"
+                    ></div>
+                    <p>Accent</p>
+                </div>
             </div>
         </div>
         <div class="flex space-x-2 justify-end">
@@ -19,4 +23,5 @@
             <button class="bg-primary-400 hover:bg-blue-800 button" (click)="save()">Save</button>
         </div>
     </div>
+    <accent-color-picker *ngIf="showAccentPicker" (closeAccentEvent)="assignAccentColor($event)"></accent-color-picker>
 </div>

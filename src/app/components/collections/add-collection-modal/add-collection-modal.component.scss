@@ -1,5 +1,5 @@
 .modal {
-    @apply flex flex-col px-6 py-6 z-50 space-y-8 rounded-lg bg-primary-500;
+    @apply w-[420px] min-h-[220px] px-6 py-6 z-50 rounded-lg bg-primary-500;
 }
 
 .button {
@@ -12,4 +12,8 @@
 
 .invalid-field {
     @apply placeholder-red-400 border-b-red-400;
+}
+
+.accent-icon {
+    @apply rounded-full p-3 drop-shadow-md cursor-pointer;
 }

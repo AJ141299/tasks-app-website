@@ -28,7 +28,6 @@ export class CollectionComponent {
 
   ngOnInit() {
     this.completePercent = completePercent(this.collectionData);
-    console.log(this.completePercent)
   }
 
   getTasksStatus() {
