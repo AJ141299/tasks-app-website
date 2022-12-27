@@ -25,7 +25,6 @@ import { Router } from '@angular/router';
 export class SideBarComponent {
   collections$ = this.store.select(selectAllCollections);
   currentCollectionId: string | null = null;
-  currentCollectionColor: string = 'hsla(240,13%,20%,1.0)';
   @Output() closeSideBar = new EventEmitter();
 
   constructor(

@@ -2,11 +2,11 @@
     <p class="font-semibold text-primary-100 px-6 pb-3">Collections</p>
     <div class="cursor-pointer">
         <div
-        [style.backgroundColor]="
-        currentCollectionId == collection.id 
-        ? currentCollectionColor 
-        : ''"
         *ngFor="let collection of (collections$ | async)" 
+        [class]="
+        currentCollectionId == collection.id 
+        ? 'bg-primary-400' 
+        : ''"
         class=" flex items-center space-x-2 px-6 py-4 w-full font-medium"
         (click)="openCollection(collection.id)">
             <div 
