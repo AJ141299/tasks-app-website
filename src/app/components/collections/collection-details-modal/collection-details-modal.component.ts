@@ -30,7 +30,7 @@ export class CollectionDetailsModalComponent {
   showAccentPicker: boolean = false;
   showIconPicker: boolean = false;
   selectedIconPath: string | undefined = "";
-  selectedAccentColor: string = "hsla(340,94%,72%,1.0)";
+  selectedAccentColor: string = 'hsla(240,13%,50%,1.0)';
   isFavourite: boolean = false;
   @Input() collectionExists: boolean = false;
   @Input() collection: Collection = {

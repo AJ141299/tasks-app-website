@@ -13,7 +13,7 @@ import { Task } from 'src/app/state/models/ui.models';
 export class TaskComponent {
   @Input() collectionId: string;
   @Input() task: Task;
-  @Input() accentColor: string = "hsla(240,13%,30%,1.0)";
+  @Input() accentColor: string = 'hsla(240,13%,50%,1.0)';
   taskContent = new FormControl();
 
   constructor(private store: Store<AppState>) {}
