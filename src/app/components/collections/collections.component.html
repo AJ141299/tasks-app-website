@@ -18,12 +18,11 @@
                     sortBy == SortCollectionsBy.all 
                     ? 'toggle-active' 
                     : 'toggle-inactive'" 
-                class="toggle-button"
-            >
+                class="toggle-button">
                 All Collections
             </button>
         </div>
-        <div class="grid grid-cols-3 gap-4 columns-3">
+        <div class="grid sm:grid-cols-2 grid-cols-3 gap-4 columns-3">
             <collection 
                 [collectionData]="collection" 
                 *ngFor="let collection of allCollections$ | async"

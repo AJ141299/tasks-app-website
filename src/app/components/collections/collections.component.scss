@@ -1,7 +1,9 @@
 .add-collection {
     @apply 
-        w-collection 
+        w-collection
+        sm:w-collection-mobile 
         h-add-collection
+        sm:h-add-collection-mobile
         rounded-collection
         text-xl 
         font-semibold 

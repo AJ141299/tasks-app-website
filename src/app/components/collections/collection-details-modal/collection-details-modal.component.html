@@ -1,37 +1,51 @@
 <modal-screen>
-    <div [@fade]="'open'" *ngIf="!showAccentPicker && !showIconPicker" class="flex flex-col h-[221px] justify-between">
-        <p class="text-lg font-semibold">{{
+    <div 
+    [@fade]="'open'" 
+    *ngIf="!showAccentPicker && !showIconPicker" 
+    class="flex flex-col h-[221px] justify-between">
+        <p class="text-lg font-semibold">
+        {{
             collectionExists 
             ? 'Edit Collection' 
             : 'New Collection'
-        }}</p>
+        }}
+        </p>
         <div class="px-1 justify-between">
-            <div class="flex justify-between items-end space-x-8 text-sm text-text-secondary">
-                <input [class]="fieldValid ? '' : 'invalid-field animate-wiggle'" (keyup.enter)="save()" required placeholder="Name" class="bg-transparent border-b-2 border-primary-300 text-base" type="text" [formControl]="nameControl">
-                <div class="collection-input items-center">
-                    <div *ngIf="!selectedIconPath" (click)="toggleIconPicker()" class="cursor-pointer items-center flex">Choose</div>
-                    <div 
-                    (click)="toggleIconPicker()" 
-                    *ngIf="selectedIconPath" 
-                    [style.backgroundColor]="selectedAccentColor" 
-                    class="rounded-[12px] p-2 w-[35px] h-[35px] cursor-pointer">
-                        <img [src]="selectedIconPath" alt="" srcset="">
+            <div class="flex sm:flex-col sm:justify-start sm:items-start justify-between items-end sm:space-x-0 sm:space-y-4 space-x-8 text-sm text-text-secondary">
+                <input 
+                [class]="fieldValid ? '' : 'invalid-field animate-wiggle'" 
+                (keyup.enter)="save()" 
+                required 
+                placeholder="Name" 
+                class="bg-transparent border-b-2 border-primary-300 text-base" 
+                type="text" 
+                [formControl]="nameControl">
+                <div class="flex justify-between items-end space-x-8">
+                    <div class="collection-input items-center">
+                        <div *ngIf="!selectedIconPath" (click)="toggleIconPicker()" class="cursor-pointer items-center flex">Choose</div>
+                        <div 
+                        (click)="toggleIconPicker()" 
+                        *ngIf="selectedIconPath" 
+                        [style.backgroundColor]="selectedAccentColor" 
+                        class="rounded-[12px] p-2 w-[35px] h-[35px] cursor-pointer">
+                            <img [src]="selectedIconPath" alt="" srcset="">
+                        </div>
+                        <p>Icon</p>
                     </div>
-                    <p>Icon</p>
-                </div>
-                <div (click)="toggleAccentPicker()" class="collection-input cursor-pointer items-center">
-                    <div
-                    [style]="{ backgroundColor: selectedAccentColor }"
-                    class="accent-icon"
-                    ></div>
-                    <p>Accent</p>
-                </div>
-                <div class="collection-input items-center">
-                    <favourite-collection-button
-                        [isFavourite]="isFavourite"
-                        (favouriteUpdated)="updateFavourite($event)">
-                    </favourite-collection-button>
-                    <p>Favourite</p>
+                    <div (click)="toggleAccentPicker()" class="collection-input cursor-pointer items-center">
+                        <div
+                        [style]="{ backgroundColor: selectedAccentColor }"
+                        class="accent-icon"
+                        ></div>
+                        <p>Accent</p>
+                    </div>
+                    <div class="collection-input items-center">
+                        <favourite-collection-button
+                            [isFavourite]="isFavourite"
+                            (favouriteUpdated)="updateFavourite($event)">
+                        </favourite-collection-button>
+                        <p>Favourite</p>
+                    </div>
                 </div>
             </div>
         </div>

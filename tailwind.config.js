@@ -23,10 +23,13 @@ module.exports = {
       },
       width: {
         'collection': '170px',
+        'collection-mobile': '150px',
       },
       height: {
         'collection': '160px',
+        'collection-mobile': '140px',
         'add-collection': '80px',
+        'add-collection-mobile': '70px',
       },
       borderRadius: {
         'collection': '20px',
@@ -35,6 +38,19 @@ module.exports = {
         wiggle: 'pulse 1s ease-in-out 200ms',
       },
     },
+    screens: {
+			xl: { max: "1279px" },
+			// => @media (max-width: 1279px) { ... }
+
+			lg: { max: "1023px" },
+			// => @media (max-width: 1023px) { ... }
+
+			md: { max: "767px" },
+			// => @media (max-width: 767px) { ... }
+
+			sm: { max: "640px" },
+			// => @media (max-width: 639px) { ... }
+		},
   },
   plugins: [],
 };
