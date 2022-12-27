@@ -36,7 +36,14 @@ export const loadCollections = createAction(
     props<{collections: Collection[]}>()
 );
 
+export const setShowSideBar = createAction(
+    '[All Pages] Set ShowSideBar',
+    props<{showSideBar: boolean}>()
+);
+
 export const setCollectionFavourite = createAction(
     '[Tasks Page] Set Collection Favourite',
     props<{collectionId: string, isFavourite: boolean}>()
 );
+
+

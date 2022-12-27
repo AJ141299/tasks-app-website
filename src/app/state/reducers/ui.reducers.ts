@@ -8,6 +8,7 @@ import {
     loadCollections,
     deleteCollection,
     setCollectionFavourite,
+    setShowSideBar,
 } from "../actions/ui.actions";
 import {
     deleteTaskInCollection,
@@ -18,6 +19,7 @@ import {
 
 const initialState: UiState = {
     collections: [],
+    showSideBar: true
 };
 
 export const uiReducer = createReducer(
@@ -71,5 +73,9 @@ export const uiReducer = createReducer(
     on(loadCollections, (state, { collections }) => ({
         ...state,
         collections: collections
+    })),
+    on(setShowSideBar, (state, { showSideBar }) => ({
+        ...state,
+        showSideBar: showSideBar
     })),
 );

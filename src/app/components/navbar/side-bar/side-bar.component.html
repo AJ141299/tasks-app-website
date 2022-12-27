@@ -1,1 +1,19 @@
-<div @slideIn class="side-bar"></div>
+<div @slideIn class="side-bar flex flex-col py-20">
+    <p class="font-semibold text-primary-100 px-6 pb-3">Collections</p>
+    <div class="cursor-pointer">
+        <div
+        [style.backgroundColor]="currentCollectionId == collection.id ? 'red' : ''"
+        *ngFor="let collection of (collections$ | async)" 
+        class=" flex items-center space-x-2 px-6 py-4 w-full font-medium"
+        (click)="openCollection(collection.id)">
+            <div 
+            [style.backgroundColor]="collection.accentColor" 
+            class="rounded-[12px] p-[6px] w-[30px] h-[30px] cursor-pointer">
+                <img [src]="collection.iconPath" alt="" srcset="">
+            </div>
+            <p>
+                {{collection.name}}
+            </p>
+        </div>
+    </div>
+</div>

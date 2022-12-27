@@ -8,3 +8,8 @@ export const selectAllCollections = createSelector(
     selectUiState,
     (state: UiState) => state.collections
 );
+
+export const selectShowSideBar = createSelector(
+    selectUiState,
+    (state: UiState) => state.showSideBar
+);

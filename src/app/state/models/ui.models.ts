@@ -1,5 +1,6 @@
 export interface UiState {
     collections: Collection[];
+    showSideBar: boolean;
 }
 
 export interface Collection {
