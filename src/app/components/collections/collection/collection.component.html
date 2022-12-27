@@ -1,6 +1,6 @@
 <main (click)="open()" class="collection collection-size cursor-pointer">
     <div class="text-xl">
-        <div *ngIf="collectionData.iconPath" [style.backgroundColor]="collectionData.accentColor" class="rounded-[12px] p-2 w-[38px] h-[38px]">
+        <div [style.backgroundColor]="collectionData.iconPath ? collectionData.accentColor:  'transparent'" class="rounded-[12px] p-2 w-[38px] h-[38px]">
             <img [src]="collectionData.iconPath" alt="" srcset="">
         </div>
     </div>

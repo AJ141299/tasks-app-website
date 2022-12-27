@@ -22,7 +22,7 @@
                 All Collections
             </button>
         </div>
-        <div class="grid sm:grid-cols-2 grid-cols-3 gap-4 columns-3">
+        <div class="grid sm:grid-cols-2 sm:gap-y-10 sm:gap-x-4 grid-cols-3 gap-4">
             <collection 
                 [collectionData]="collection" 
                 *ngFor="let collection of allCollections$ | async"

@@ -23,11 +23,11 @@ module.exports = {
       },
       width: {
         'collection': '170px',
-        'collection-mobile': '150px',
+        'collection-mobile': '100%',
       },
       height: {
         'collection': '160px',
-        'collection-mobile': '140px',
+        'collection-mobile': '120%',
         'add-collection': '80px',
         'add-collection-mobile': '70px',
       },

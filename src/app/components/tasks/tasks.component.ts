@@ -49,8 +49,10 @@ export class TasksComponent {
   completeTasks$: Observable<Task[] | undefined> = this.allTasks$.pipe(
     map((tasks: Task[] | undefined) => tasks?.filter((task: Task) => task.isComplete))
   );
+
   addTaskControl: FormControl = new FormControl();
   showCollectionOptions: boolean = false;
+  editingCollection: boolean = false;
   collectionModalOptions: ModalOption[] = [
     {
       name: "Edit",
@@ -61,7 +63,6 @@ export class TasksComponent {
       value: "delete"
     }
   ];
-  editingCollection: boolean = false;
 
   constructor(
     private store: Store<AppState>,
