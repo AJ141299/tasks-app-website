@@ -22,6 +22,8 @@ import { DropdownModalComponent } from './components/dropdown-modal/dropdown-mod
 import { CollectionDetailsModalComponent } from './components/collections/collection-details-modal/collection-details-modal.component';
 import { NgClickOutsideDirective } from 'ng-click-outside2';
 import { FavouriteCollectionButtonComponent } from './components/collections/favourite-collection-button/favourite-collection-button.component';
+import { IconPickerComponent } from './components/collections/icon-picker/icon-picker.component';
+import { IconWrapperComponent } from './components/collections/icon-picker/icon-wrapper/icon-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { FavouriteCollectionButtonComponent } from './components/collections/fav
     DropdownModalComponent,
     CollectionDetailsModalComponent,
     FavouriteCollectionButtonComponent,
+    IconPickerComponent,
+    IconWrapperComponent,
   ],
   imports: [
     BrowserModule,

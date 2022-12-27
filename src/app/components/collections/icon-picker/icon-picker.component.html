@@ -1,0 +1,13 @@
+<div @fade class="flex flex-col space-y-10">
+    <button (click)="closeIconPicker('')">
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+          </svg>
+    </button>
+    <div class="grid grid-cols-7 gap-y-4">
+        <icon-wrapper (click)="closeIconPicker(path)" class="cursor-pointer" *ngFor="let path of IconFilePaths" [accentColor]="accentColor">
+            <img [src]="path" alt="">
+        </icon-wrapper>
+        <div class="flex items-center cursor-pointer" (click)="closeIconPicker('')">None</div>
+    </div>
+</div>
