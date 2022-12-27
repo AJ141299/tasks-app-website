@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'navbar',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
+  showSideBar: boolean = false;
 
+  toggleSideBar() {
+    this.showSideBar = !this.showSideBar;
+  }
 }
