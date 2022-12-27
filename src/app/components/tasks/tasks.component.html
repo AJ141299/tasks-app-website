@@ -12,6 +12,7 @@
             <favourite-collection-button
                 (favouriteUpdated)="updateFavourite($event)"
                 [isFavourite]="(collection$ | async)!.isFavourite"
+                [accentColor]="(collection$ | async)!.accentColor"
             ></favourite-collection-button>
             <div class="relative">
                 <div (clickOutside)="closeCollectionOptions()" (click)="toggleCollectionOptions()" class="cursor-pointer">

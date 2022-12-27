@@ -24,6 +24,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 })
 export class FavouriteCollectionButtonComponent {
   @Input() isFavourite: boolean = false;
+  @Input() accentColor: string = 'red';
   @Output('favouriteUpdated') favouriteUpdated = new EventEmitter<boolean>();
   
   toggleFavourite() {
