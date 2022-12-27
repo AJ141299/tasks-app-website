@@ -6,19 +6,25 @@
             : 'New Collection'
         }}</p>
         <div class="px-1 justify-between">
-            <div class="flex justify-between space-x-8 text-sm text-text-secondary">
+            <div class="flex justify-between items-end space-x-8 text-sm text-text-secondary">
                 <input [class]="fieldValid ? '' : 'invalid-field animate-wiggle'" (keyup.enter)="save()" required placeholder="Name" class="bg-transparent border-b-2 border-primary-300 text-base" type="text" [formControl]="nameControl">
                 <div class="collection-input items-center">
                     <div class="text-xl">{{selectedIcon}}</div>
                     <p>Icon</p>
                 </div>
-                <div class="collection-input items-center">
-                    <div 
-                    (click)="toggleAccentPicker()" 
+                <div (click)="toggleAccentPicker()" class="collection-input cursor-pointer items-center">
+                    <div
                     [style]="{ backgroundColor: selectedAccentColor }"
                     class="accent-icon"
                     ></div>
                     <p>Accent</p>
+                </div>
+                <div class="collection-input items-center">
+                    <favourite-collection-button
+                        [isFavourite]="isFavourite"
+                        (favouriteUpdated)="updateFavourite($event)">
+                    </favourite-collection-button>
+                    <p>Favourite</p>
                 </div>
             </div>
         </div>

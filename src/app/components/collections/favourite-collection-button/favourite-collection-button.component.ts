@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { upsertCollection } from 'src/app/state/actions/ui.actions';
 import { AppState } from 'src/app/state/app.state';
@@ -23,23 +23,12 @@ import { animate, style, transition, trigger } from '@angular/animations';
   ]
 })
 export class FavouriteCollectionButtonComponent {
-  @Input() collection: Collection | undefined | null;
-  isFavourite: boolean | undefined;
-
-  constructor(private store: Store<AppState>) { }
-
-  ngOnInit() {
-    this.isFavourite = this.collection!.isFavourite;
-  }
+  @Input() isFavourite: boolean = false;
+  @Output('favouriteUpdated') favouriteUpdated = new EventEmitter<boolean>();
   
   toggleFavourite() {
     this.isFavourite = !this.isFavourite;
-    
-    const updateFavourite: Collection = {
-      ...this.collection!,
-      isFavourite: this.isFavourite
-    };
 
-    this.store.dispatch(upsertCollection(updateFavourite));
+    this.favouriteUpdated.emit(this.isFavourite);
   }
 }

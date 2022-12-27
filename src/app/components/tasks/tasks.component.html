@@ -10,7 +10,8 @@
         </div>
         <div class="flex space-x-3">
             <favourite-collection-button
-                [collection]="collection$ | async"
+                (favouriteUpdated)="updateFavourite($event)"
+                [isFavourite]="(collection$ | async)!.isFavourite"
             ></favourite-collection-button>
             <div class="relative">
                 <div (clickOutside)="closeCollectionOptions()" (click)="toggleCollectionOptions()" class="cursor-pointer">
@@ -57,5 +58,5 @@
     *ngIf="editingCollection"
     (close)="toggleEditCollection()"
     [collectionExists]="true"
-    [collection]="collection$ | async"
+    [collection]="(collection$ | async)!"
 ></collection-details-modal>

@@ -2,8 +2,26 @@
     <p class="text-2xl font-medium">Collections</p>
     <div class="flex flex-col space-y-8">
         <div class="flex space-x-3 text-sm text-text-secondary font-medium">
-            <button class="toggle-button toggle-inactive">Favourites</button>
-            <button class="toggle-button toggle-active ">All Collections</button>
+            <button
+                (click)="sortCollectionsBy(SortCollectionsBy.favourites)"
+                [class]="
+                    sortBy == SortCollectionsBy.favourites 
+                    ? 'toggle-active' 
+                    : 'toggle-inactive'" 
+                class="toggle-button"
+            >
+                Favourites
+            </button>
+            <button 
+                (click)="sortCollectionsBy(SortCollectionsBy.all)"
+                [class]="
+                    sortBy == SortCollectionsBy.all 
+                    ? 'toggle-active' 
+                    : 'toggle-inactive'" 
+                class="toggle-button"
+            >
+                All Collections
+            </button>
         </div>
         <div class="grid grid-cols-3 gap-4 columns-3">
             <collection 

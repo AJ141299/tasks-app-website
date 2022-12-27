@@ -34,15 +34,17 @@ export class CollectionDetailsModalComponent {
   nameControl = new FormControl();
   fieldValid: boolean = true;
   showAccentPicker: boolean = false;
-  selectedIcon: string | undefined = "🚧";
+  selectedIcon: string | undefined = "";
   selectedAccentColor: string = "hsla(340,94%,72%,1.0)";
+  isFavourite: boolean = false;
   @Input() collectionExists: boolean = false;
-  @Input() collection: Collection | undefined | null = {
+  @Input() collection: Collection = {
     id: uuidv4(),
     name: this.nameControl.getRawValue(),
     tasks: [],
     iconPath: this.selectedIcon,
     accentColor: this.selectedAccentColor,
+    isFavourite: false
   };
   @Output('close') closeModal = new EventEmitter();
 
@@ -51,9 +53,10 @@ export class CollectionDetailsModalComponent {
   ngOnInit() {
     // load existing values
     if (this.collectionExists) {
-      this.nameControl.setValue(this.collection!.name);
-      this.selectedAccentColor = this.collection!.accentColor;
-      this.selectedIcon = this.collection!.iconPath;
+      this.nameControl.setValue(this.collection.name);
+      this.selectedAccentColor = this.collection.accentColor;
+      this.selectedIcon = this.collection.iconPath;
+      this.isFavourite = this.collection.isFavourite;
     }
   }
 
@@ -64,7 +67,8 @@ export class CollectionDetailsModalComponent {
     }
 
     const collection: Collection = {
-      ...this.collection!,
+      ...this.collection,
+      isFavourite: this.isFavourite,
       accentColor: this.selectedAccentColor,
       iconPath: this.selectedIcon,
       name: this.nameControl.getRawValue(),
@@ -85,5 +89,9 @@ export class CollectionDetailsModalComponent {
   assignAccentColor(color: string) {
     this.selectedAccentColor = color;
     this.toggleAccentPicker();
+  }
+
+  updateFavourite(isFavourite: boolean) {
+    this.isFavourite = isFavourite
   }
 }

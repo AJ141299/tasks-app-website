@@ -1,7 +1,3 @@
-.modal {
-    @apply w-[420px] min-h-[220px] px-6 py-6 z-50 rounded-lg bg-primary-500;
-}
-
 .button {
     @apply text-sm font-semibold px-4 py-1 hover:text-text-primary rounded-collection transition-all ease-out;
 }
@@ -15,5 +11,5 @@
 }
 
 .accent-icon {
-    @apply rounded-full p-3 drop-shadow-md cursor-pointer;
+    @apply rounded-full p-[0.65rem] drop-shadow-md cursor-pointer;
 }

@@ -35,3 +35,8 @@ export const loadCollections = createAction(
     '[Collections/Tasks Page] Get Collections from Local Storage',
     props<{collections: Collection[]}>()
 );
+
+export const setCollectionFavourite = createAction(
+    '[Tasks Page] Set Collection Favourite',
+    props<{collectionId: string, isFavourite: boolean}>()
+);

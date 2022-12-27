@@ -35,3 +35,19 @@ export const createTaskInCollection = (task: Task, collection: Collection): Coll
         tasks: [...collection.tasks, task]
     };
 };
+
+export const updateCollectionFavourite = (
+    collectionId: string,
+    collections: Collection[],
+    isFavourite: boolean): Collection[] =>
+{
+    const favouriteUpdated: Collection = {
+        ...collections.find((collection: Collection) => collection.id == collectionId)!,
+        isFavourite: isFavourite
+    };
+
+    return [
+        ...collections.filter((collection: Collection) => collection.id != collectionId),
+        favouriteUpdated
+    ];
+};

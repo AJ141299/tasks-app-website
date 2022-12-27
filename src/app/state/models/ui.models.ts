@@ -7,7 +7,7 @@ export interface Collection {
     name: string;
     iconPath?: string;
     tasks: Task[];
-    isFavourite?: boolean;
+    isFavourite: boolean;
     accentColor: string;
 }
 

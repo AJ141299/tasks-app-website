@@ -4,7 +4,7 @@ import { AppState } from "../app.state";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { selectAllCollections } from "../selectors/ui.selectors";
 import { withLatestFrom, tap } from "rxjs";
-import { upsertCollection, createTask, deleteTask, revertTaskCompleteStatus, updateTask, deleteCollection } from "../actions/ui.actions";
+import { upsertCollection, createTask, deleteTask, revertTaskCompleteStatus, updateTask, deleteCollection, setCollectionFavourite } from "../actions/ui.actions";
 
 @Injectable()
 export class UiEffects {
@@ -23,7 +23,8 @@ export class UiEffects {
                 updateTask,
                 deleteTask,
                 revertTaskCompleteStatus,
-                deleteCollection
+                deleteCollection,
+                setCollectionFavourite
             ),
             withLatestFrom(this.collections$),
             tap(([_, collections]) => {

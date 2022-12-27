@@ -7,11 +7,13 @@ import {
     createTask,
     loadCollections,
     deleteCollection,
+    setCollectionFavourite,
 } from "../actions/ui.actions";
 import {
     deleteTaskInCollection,
     revertCompleteStatus,
     createTaskInCollection,
+    updateCollectionFavourite,
 } from "./reducer.helpers";
 
 const initialState: UiState = {
@@ -31,6 +33,10 @@ export const uiReducer = createReducer(
         ...state,
         collections: state.collections
             .filter((collection: Collection) => collection.id != collectionId)
+    })),
+    on(setCollectionFavourite, (state, { collectionId, isFavourite }) => ({
+        ...state,
+        collections: updateCollectionFavourite(collectionId, state.collections, isFavourite)
     })),
     on(deleteTask, (state, { collectionId, taskId }) => ({
         ...state,
