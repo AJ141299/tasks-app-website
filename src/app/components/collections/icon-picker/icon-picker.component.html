@@ -5,9 +5,13 @@
           </svg>
     </button>
     <div class="grid grid-cols-7 gap-y-4">
-        <icon-wrapper (click)="closeIconPicker(path)" class="cursor-pointer" *ngFor="let path of IconFilePaths" [accentColor]="accentColor">
+        <div 
+        (click)="closeIconPicker(path)" 
+        *ngFor="let path of IconFilePaths" 
+        [style.backgroundColor]="accentColor" 
+        class="cursor-pointer rounded-[14px] p-2 w-11 h-11">
             <img [src]="path" alt="">
-        </icon-wrapper>
+        </div>
         <div class="flex items-center cursor-pointer" (click)="closeIconPicker('')">None</div>
     </div>
 </div>
