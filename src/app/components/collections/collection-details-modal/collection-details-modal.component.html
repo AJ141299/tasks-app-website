@@ -55,9 +55,8 @@
         </div>
     </div>
     <accent-color-picker 
-        *ngIf="showAccentPicker" 
-        (closeAccentEvent)="assignAccentColor($event)"
-    >
+    *ngIf="showAccentPicker" 
+    (closeAccentEvent)="assignAccentColor($event)">
     </accent-color-picker>
     <icon-picker (closePicker)="assignIconPath($event)" [accentColor]="selectedAccentColor" *ngIf="showIconPicker"></icon-picker>
 </modal-screen>
