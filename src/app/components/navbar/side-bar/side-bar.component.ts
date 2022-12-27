@@ -3,8 +3,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.state';
 import { selectAllCollections } from 'src/app/state/selectors/ui.selectors';
-import { ActivatedRoute, ActivationEnd, Router } from '@angular/router';
-import { filter, map } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'side-bar',
@@ -26,22 +25,18 @@ import { filter, map } from 'rxjs';
 export class SideBarComponent {
   collections$ = this.store.select(selectAllCollections);
   currentCollectionId: string | null = null;
+  currentCollectionColor: string = 'hsla(240,13%,20%,1.0)';
   @Output() closeSideBar = new EventEmitter();
 
   constructor(
     private store: Store<AppState>,
-    private router: Router,
-    private route: ActivatedRoute
+    private router: Router
   ) { 
-    this.router.events
-      .pipe(
-        filter(e => (e instanceof ActivationEnd) && (Object.keys(e.snapshot.params).length > 0)),
-        map(e => e instanceof ActivationEnd ? e.snapshot.params : {})
-      )
-      .subscribe(params => {
-        this.currentCollectionId = params['collectionId'];
-        console.log(this.currentCollectionId)
-      });
+    // hacky, but can't get params easily outside of router-outlet
+    const splitUrl: string[] = this.router.url.split('/');
+    if (splitUrl[1] == 'collection') {
+      this.currentCollectionId = splitUrl[2];
+    }
   }
   
   openCollection(collectionId: string) {
