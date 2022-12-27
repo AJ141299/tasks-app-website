@@ -24,18 +24,18 @@
         px-6 
         py-2 
         drop-shadow 
-        rounded-collection
+        rounded-[14px]
         border-2
-        border-primary-550
+        border-primary-400
         transition-all
         ease-out
         duration-200
 }
 
 .toggle-active {
-    @apply bg-primary-550
+    @apply bg-primary-400
 }
 
 .toggle-inactive {
-    @apply hover:bg-primary-550
+    @apply hover:bg-primary-400
 }
