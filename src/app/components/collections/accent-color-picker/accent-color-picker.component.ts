@@ -7,17 +7,23 @@ import { animate, style, transition, trigger } from '@angular/animations';
   styleUrls: ['./accent-color-picker.component.scss'],
   animations: [
     trigger('fade', [
-      transition('* => open', [
+      transition(':enter', [
         style({ opacity: 0 }),
-        animate(3000, style({ opacity: 1 }))
+        animate(200, style({ opacity: 1 }))
       ])
     ]),
     trigger('fadeUp', [
-      transition('* => open', [
+      transition(':enter', [
         style({ opacity: 0, transform: 'translateY(3%)' }),
         animate(200, style({ opacity: 1, transform: 'translateY(0)' }))
       ])
-    ]),
+	]),
+	trigger('bounceIn', [
+		transition(':enter', [
+		  style({ opacity: 0, scale: 0 }),
+		  animate(100, style({ opacity: 1, scale: 1 }))
+		])
+	]),
   ]
 })
 export class AccentColorPickerComponent {
@@ -38,6 +44,7 @@ export class AccentColorPickerComponent {
 		'hsla(250,94%,72%,1.0)',
 		'hsla(270,94%,72%,1.0)',
 		'hsla(290,94%,72%,1.0)',
+		'hsla(310,94%,72%,1.0)',
 		'hsla(240,13%,50%,1.0)'
 	];
 	

@@ -4,7 +4,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
           </svg>
     </button>
-    <div [@fadeUp]="'open'" class="grid grid-cols-6 gap-y-5 gap-2">
-        <div [style.backgroundColor]="color" (click)="closeAccentPicker(color)" class="accent-icon" *ngFor="let color of colors"></div>
+    <div class="grid grid-cols-8 gap-y-5 gap-2">
+        <div @fade [style.backgroundColor]="color" (click)="closeAccentPicker(color)" class="accent-icon" *ngFor="let color of colors"></div>
     </div>
 </div>
