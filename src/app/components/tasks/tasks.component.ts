@@ -11,15 +11,6 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { ModalOption } from '../dropdown-modal/dropdown-modal.component';
 
-const setAccentColors = (collection$: Observable<Collection | undefined>) => {
-  const taskIcon: HTMLElement | null = document.querySelector('.add-task-icon');
-  collection$.pipe(
-    tap((collection: Collection | undefined) => {
-      taskIcon!.style.backgroundColor = collection!.accentColor;
-    })
-  ).subscribe();
-}
-
 @Component({
   selector: 'tasks',
   templateUrl: './tasks.component.html',
@@ -43,11 +34,21 @@ const setAccentColors = (collection$: Observable<Collection | undefined>) => {
   ]
 })
 export class TasksComponent {
-  collectionId: string;
-  collection$: Observable<Collection | undefined>;
-  allTasks$: Observable<Task[]>;
-  incompleteTasks$: Observable<Task[]>;
-  completeTasks$: Observable<Task[]>;
+  collectionId: string = this.route.snapshot.paramMap.get('collectionId')!;
+  collection$: Observable<Collection | undefined> = this.store.select(selectAllCollections).pipe(
+      map((collections: Collection[]) => collections.find(
+        (collection: Collection) => collection.id == this.collectionId
+      ))
+  );
+  allTasks$: Observable<Task[] | undefined> = this.collection$.pipe(
+    map((collection: Collection | undefined) => collection?.tasks)
+  );
+  incompleteTasks$: Observable<Task[] | undefined> = this.allTasks$.pipe(
+    map((tasks: Task[] | undefined) => tasks?.filter((task: Task) => !task.isComplete))
+  );
+  completeTasks$: Observable<Task[] | undefined> = this.allTasks$.pipe(
+    map((tasks: Task[] | undefined) => tasks?.filter((task: Task) => task.isComplete))
+  );
   addTaskControl: FormControl = new FormControl();
   showCollectionOptions: boolean = false;
   collectionModalOptions: ModalOption[] = [
@@ -67,26 +68,6 @@ export class TasksComponent {
     private route: ActivatedRoute,
     private router: Router,
   ) { }
-  
-  ngOnInit() {
-    this.collectionId = this.route.snapshot.paramMap.get('collectionId')!;
-    this.collection$ = this.store.select(selectAllCollections).pipe(
-      map((collections: Collection[]) => collections.find(
-        (collection: Collection) => collection.id == this.collectionId
-      ))
-    );
-    this.allTasks$ = this.collection$.pipe(
-      map((collection: Collection | undefined) => collection!.tasks)
-    );
-    this.incompleteTasks$ = this.allTasks$.pipe(
-      map((tasks: Task[]) => tasks.filter((task: Task) => !task.isComplete))
-    );
-    this.completeTasks$ = this.allTasks$.pipe(
-      map((tasks: Task[]) => tasks.filter((task: Task) => task.isComplete))
-    );
-
-    setAccentColors(this.collection$);
-  }
 
   addTask() {
     const taskContent = this.addTaskControl.getRawValue();

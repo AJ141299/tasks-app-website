@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="add-task-field">
-        <button (click)="addTask()" class="add-task-icon">
+        <button [style.backgroundColor]="(collection$ | async)?.accentColor" (click)="addTask()" class="add-task-icon">
             <svg fill="none" viewBox="0 0 24 24" stroke-width="2.7" stroke="currentColor" class="w-5 h-5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
               </svg>
