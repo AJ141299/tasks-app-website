@@ -9,7 +9,7 @@ module.exports = {
         "nav": 'hsla(234,16%,15%,1.0)',
         "text-primary": 'hsla(234,16%,90%,1.0)',
         "text-secondary": 'hsla(234,16%,70%,1.0)',
-        "text-tertiary": 'hsla(234,16%,40%,1.0)',
+        "text-tertiary": 'hsla(232,4%,55%,1.0)',
         "primary-bg": 'hsla(230,15%,10%,1.0)',
         "primary-700": 'hsla(234,16%,10%,1.0)',
         "primary-600": 'hsla(234,16%,12%,1.0)',
